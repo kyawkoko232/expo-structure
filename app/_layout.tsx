@@ -39,13 +39,13 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
-    <LanguageProvider>
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <SessionProvider>
-        <Stack screenOptions={{ headerShown: false }} />
-        </SessionProvider>
-      </ThemeProvider>
-    </LanguageProvider>
+      <LanguageProvider>
+        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+          <SessionProvider>
+            <Stack screenOptions={{ headerShown: false }} />
+          </SessionProvider>
+        </ThemeProvider>
+      </LanguageProvider>
     </Provider>
   );
 }

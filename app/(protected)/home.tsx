@@ -11,7 +11,7 @@ const Home = () => {
   const handleSignOut = async () => {
     try {
       await signOut(); // Call the signOut method
-      router.replace("/login"); // Redirect to login page after sign-out
+      router.replace("/"); // Redirect to login page after sign-out
     } catch (error: any) {
       console.error("Error during sign-out:", error);
 
@@ -30,23 +30,6 @@ const Home = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Home Page</Text>
         <View style={styles.linkContainer}>
-          {/* Conditionally render login or sign-out button based on session */}
-          {!session ? (
-            <TouchableOpacity style={styles.primaryButton}>
-              <Link href="/login" style={styles.linkText}>
-                Login
-              </Link>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.secondaryButton}
-              onPress={handleSignOut} // Sign out button handler
-              accessibilityLabel="Sign Out"
-            >
-              <Text style={styles.linkText}>Sign Out</Text>
-            </TouchableOpacity>
-          )}
-
           <TouchableOpacity style={styles.primaryButton}>
             <Link href="/(protected)/(tabs)/" style={styles.linkText}>
               Go to Tabs
@@ -64,6 +47,23 @@ const Home = () => {
               Root
             </Link>
           </TouchableOpacity>
+
+          {/* Conditionally render login or sign-out button based on session */}
+          {!session ? (
+            <TouchableOpacity style={styles.primaryButton}>
+              <Link href="/login" style={styles.linkText}>
+                Login
+              </Link>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.secondaryButton}
+              onPress={handleSignOut} // Sign out button handler
+              accessibilityLabel="Sign Out"
+            >
+              <Text style={styles.linkText}>Sign Out</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </SafeAreaView>

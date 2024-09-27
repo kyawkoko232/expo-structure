@@ -20,5 +20,10 @@ yarn add expo-localization i18next react-i18next
 yarn add react-hook-form zod @hookform/resolvers
 ```
 
+### dropdown
+```bash
+yarn add react-native-element-dropdown
+```
+
 
 
