@@ -2,28 +2,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
-import { useSession } from "@/providers/SessionProvider"; // Adjust this to your actual session hook
+import useAuth from "@/helpers/useAuth";
 
 const Home = () => {
-  const { session, signOut } = useSession(); // Destructure session and signOut from useSession
+  const { session, handleSignOut } = useAuth(); // Use the hook to get session and signOut
   const router = useRouter();
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(); // Call the signOut method
-      router.replace("/"); // Redirect to login page after sign-out
-    } catch (error: any) {
-      console.error("Error during sign-out:", error);
-
-      // Log additional error details
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-      }
-
-      // Optionally, show an error message to the user
-    }
-  };
 
   return (
     <SafeAreaView style={styles.safeArea}>

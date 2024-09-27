@@ -1,14 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { Dropdown } from "react-native-element-dropdown";
 import { useLanguage } from "@/context/LanguageContext"; // Language context
 import ReactNativeElementDropdownComponent from "@/components/dropdown/ReactNativeElementDropdown";
-
+import useAuth from "@/helpers/useAuth";
 
 const index = () => {
+  const { session, handleSignOut } = useAuth(); // Use the hook to get session and signOut
   const { t } = useTranslation();
   const { currentLanguage, changeLanguage, getAvailableLanguages } =
     useLanguage();
@@ -29,28 +29,57 @@ const index = () => {
         currentSelection={currentLanguage}
         onChange={(value) => changeLanguage(value)}
         placeholder="Select language"
-        label="Language"
+        label={t("language")}
       />
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => router.push("/(auth)/login")}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      {/* Conditionally render login or sign-out button based on session */}
+      {!session ? (
+        <>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/(auth)/login")}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </>
+      ) : (
+        <>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/settings/")}
+          >
+            <Text style={styles.buttonText}>{t('settings')}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSignOut} // Sign out button handler
+            accessibilityLabel="Sign Out"
+          >
+            <Text style={styles.buttonText}>{t('auth.signOut')}</Text>
+          </TouchableOpacity>
+        </>
+      )}
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => router.push("/(protected)/home")}
       >
-        <Text style={styles.buttonText}>Home</Text>
+        <Text style={styles.buttonText}>{t('home.home')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push("/settings/")}
+        onPress={() => router.push("/blog/")}
       >
-        <Text style={styles.buttonText}>Settings</Text>
+        <Text style={styles.buttonText}>{t('blog')}</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push("/routes")}
+      >
+        <Text style={styles.buttonText}>{t('allRoutes')}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

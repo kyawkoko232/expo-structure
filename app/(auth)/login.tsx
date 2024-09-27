@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "@/providers/SessionProvider";
 
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 // Zod schema for validation
 const formSchema = z.object({
@@ -29,6 +30,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const {
     control,
@@ -83,14 +85,11 @@ const Login = () => {
           errorMessage={errors.password?.message}
         />
         {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            
-            onPress={handleSubmit(onSubmit)}
-          >
-            <Text>Login</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={handleSubmit(onSubmit)}>
+          <Text style={styles.loginButtonText}>{t('auth.login')}</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -101,6 +100,22 @@ export default Login;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+  },
+
+  loginButton: {
+    backgroundColor: "#007bff", // Primary button color
+    paddingVertical: 10, // Vertical padding
+    paddingHorizontal: 20, // Horizontal padding
+    borderRadius: 8, // Rounded corners
+    alignItems: "center", // Center text horizontally
+    justifyContent: "center", // Center text vertically
+    marginTop: 20, // Space above the button
+    width: "100%", // Full width
+  },
+  loginButtonText: {
+    color: "#fff", // Text color
+    fontSize: 16, // Text size
+    fontWeight: "bold", // Bold text
   },
   container: {
     padding: 16,

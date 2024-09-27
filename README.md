@@ -25,5 +25,10 @@ yarn add react-hook-form zod @hookform/resolvers
 yarn add react-native-element-dropdown
 ```
 
+### navigation
+```bash
+npx expo install @react-navigation/drawer react-native-gesture-handler react-native-reanimated
+```
+
 
 

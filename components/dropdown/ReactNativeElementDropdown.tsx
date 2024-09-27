@@ -102,9 +102,8 @@ const styles = StyleSheet.create({
   },
   label: {
     position: 'absolute',
-    backgroundColor: 'white',
-    left: 22,
-    top: 8,
+    left: 5,
+    top: -5,
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,

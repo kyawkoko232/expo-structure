@@ -1,5 +1,8 @@
 {
     "language": "ဘာသာစကား",
+    "settings" : "ပြုပြင်ခြင်း",
+    "allRoutes" : "ရှိသမျှလမ်းကြောင်းအကုန်",
+    "blog" : "သတင်း",
     "home": {
       "title": "ခေါင်းစဥ်",
       "home" : "ပင်မ",
@@ -12,6 +15,18 @@
       "learnMore": "နောက်ထပ် သိလိုပါသလား?",
       "repositoryLinkText": "GitHub တွင် ရှိသော Project repository",
       "articlesLinkText": "နောက်ထပ် ဆောင်းပါးများ"
+    },
+    "auth" : {
+      "login" : "ဝင်ရောက်ခြင်း",
+      "signup" : "မှတ်ပုံတင်ခြင်း",
+      "email" : "အီးမေးလ်",
+      "password" : "စကားဝှက်",
+      "forgotPassword" : "စကားဝှက်မေ့သွားပါသလား?",
+      "rememberMe" : "ကျွန်တော့်ကို မှတ်မိပါ",
+      "signIn" : "ဝင်ရောက်ခြင်း",
+      "signUp" : "မှတ်ပုံတင်ခြင်း",
+      "signOut" : "ထွက်ခြင်း",
+      "logout" : "ထွက်ခြင်း"
     },
     "theme" : {
       "language setting" : "ဘာသာစကားပြောင်းလဲခြင်းဆက်တင်"

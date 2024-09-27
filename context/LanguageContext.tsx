@@ -17,7 +17,7 @@ interface LanguageProviderProps {
 }
 
 // Language options available in the app
-const availableLanguages = ['pt-BR', 'en-US', 'es-ES', 'ru-RU', 'zh-CN', 'it-IT', 'hi-IN', 'mm-MM'];
+const availableLanguages = [ 'en-US', 'mm-MM','es-ES', 'ru-RU', 'zh-CN', 'it-IT', 'hi-IN',  'pt-BR',];
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [currentLanguage, setCurrentLanguage] = useState<string>('en-US'); // Default language
