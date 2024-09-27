@@ -1,0 +1,58 @@
+export const translations = {
+    "pt-BR": {
+        email: "Email",
+        password: "Senha",
+        INVALID_EMAIL: "Email inválido",
+        MIN: "{property} precisa ter pelo menos {constraints.0} caracteres.",
+        MAX: "{property} deve ter no máximo {constraints.0} caracteres.",
+    },
+    "en-US": {
+        email: "Email",
+        password: "Password",
+        INVALID_EMAIL: "Invalid email",
+        MIN: "{property} must be at least {constraints.0} characters long.",
+        MAX: "{property} must be at most {constraints.0} characters long.",
+    },
+    "es-ES": {
+        email: "Correo electrónico",
+        password: "Contraseña",
+        INVALID_EMAIL: "Correo electrónico inválido",
+        MIN: "{property} debe tener al menos {constraints.0} caracteres.",
+        MAX: "{property} debe tener como máximo {constraints.0} caracteres.",
+    },
+    "ru-RU": {
+        email: "Электронная почта",
+        password: "Пароль",
+        INVALID_EMAIL: "Неверный адрес электронной почты",
+        MIN: "{property} должен содержать не менее {constraints.0} символов.",
+        MAX: "{property} должен содержать не более {constraints.0} символов.",
+    },
+    "zh-CN": {
+        email: "电子邮件",
+        password: "密码",
+        INVALID_EMAIL: "无效的电子邮件",
+        MIN: "{property} 至少需要 {constraints.0} 个字符。",
+        MAX: "{property} 最多需要 {constraints.0} 个字符。",
+    },
+    "it-IT": {
+        email: "Email",
+        password: "Password",
+        INVALID_EMAIL: "Email non valido",
+        MIN: "{property} deve contenere almeno {constraints.0} caratteri.",
+        MAX: "{property} deve contenere al massimo {constraints.0} caratteri.",
+    },
+    "hi-IN": {
+        email: "ईमेल",
+        password: "पासवर्ड",
+        INVALID_EMAIL: "अमान्य ईमेल",
+        MIN: "{property} में कम से कम {constraints.0} अक्षर होने चाहिए।",
+        MAX: "{property} में अधिकतम {constraints.0} अक्षर होने चाहिए।",
+    },
+   "mm-MM": {
+        email: "အီးမေးလ်",
+        password: "စကားဝှက်",
+        INVALID_EMAIL: "အီးမေးလ်မှားယွင်းသည်",
+        MIN: "{property} အနည်းဆုံး {constraints.0} လုံး ရှိရမည်။",
+        MAX: "{property} အများဆုံး {constraints.0} လုံး ရှိရမည်။",
+    },
+};

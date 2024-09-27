@@ -14,6 +14,8 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { Provider } from "react-redux";
 import { store } from "@/providers/redux/store";
 import { SessionProvider } from "@/providers/SessionProvider";
+import { LanguageProvider } from "@/context/LanguageContext";
+import "@/i18n";
 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -37,11 +39,13 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <LanguageProvider>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <SessionProvider>
         <Stack screenOptions={{ headerShown: false }} />
         </SessionProvider>
       </ThemeProvider>
+    </LanguageProvider>
     </Provider>
   );
 }
