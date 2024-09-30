@@ -11,6 +11,10 @@ const AllRoutes = () => {
         <Link href="/navigations/" style={styles.link}>
           Go to Navigation
         </Link>
+
+        <Link href="/(protected)/settings/" style={styles.link}>
+          Go to Settings
+        </Link>
       </View>
     </SafeAreaView>
   );

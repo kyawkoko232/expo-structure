@@ -13,8 +13,11 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { Provider } from "react-redux";
 import { store } from "@/providers/redux/store";
+
 import { SessionProvider } from "@/providers/SessionProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider as RestyleThemeProvider } from "@/context/ThemeContext"; // Import your custom ThemeProvider
+
 import "@/i18n";
 
 
@@ -41,9 +44,11 @@ export default function RootLayout() {
     <Provider store={store}>
       <LanguageProvider>
         <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-          <SessionProvider>
-            <Stack screenOptions={{ headerShown: false }} />
-          </SessionProvider>
+          <RestyleThemeProvider>
+            <SessionProvider>
+              <Stack screenOptions={{ headerShown: false }} />
+            </SessionProvider>
+          </RestyleThemeProvider>
         </ThemeProvider>
       </LanguageProvider>
     </Provider>

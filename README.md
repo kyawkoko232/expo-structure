@@ -32,3 +32,11 @@ npx expo install @react-navigation/drawer react-native-gesture-handler react-nat
 
 
 
+### For Restyle Branch
+
+```bash
+npx expo install @shopify/restyle
+npx expo install @expo-google-fonts/poppins
+npx expo install @expo-google-fonts/padauk
+```
+
