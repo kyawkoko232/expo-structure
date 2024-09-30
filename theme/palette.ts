@@ -19,16 +19,16 @@ const getContrastYIQ = (hex) => {
       info: "#17a2b8",
     },
     dark: {
-        background: "#f6f8fa",
-        text: getContrastYIQ("#f6f8fa"), // Contrast based on light GitHub background
-        primary: "#e1e4e8",
-        secondary: "#6f42c1",
-        accent: "#28a745",
-        success: "#28a745",
-        danger: "#dc3545",
-        warning: "#ffc107",
-        info: "#17a2b8",
-      },
+        background: "#1e1e1e", // Darker background for dark mode
+        text: getContrastYIQ("#1e1e1e"), // Adjusted text contrast for dark background
+        primary: "#2d2d2d", // Darker primary color
+        secondary: "#9b59b6", // A more vibrant purple for better contrast
+        accent: "#1abc9c", // A slightly brighter green for accent
+        success: "#28a745", // Same green for success
+        danger: "#e74c3c", // A brighter red for danger
+        warning: "#f39c12", // Slightly muted yellow for warning
+        info: "#3498db", // Brighter blue for info
+      }
   };
   
   export default palette;
