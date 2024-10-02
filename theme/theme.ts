@@ -8,7 +8,7 @@ import { textVariants } from "./textVariants";
 const lightTheme = createTheme({
   colors: {
     ...palette.light,
-    primary: palette.light.primary, // Default primary color
+    primary: palette.light.primary, 
     secondary: palette.light.secondary,
     accent: palette.light.accent,
     background: palette.light.background,
@@ -46,6 +46,7 @@ const darkTheme = createTheme({
 const themes = {
   light: lightTheme,
   dark: darkTheme,
+  auto: 'auto',
 };
 
 

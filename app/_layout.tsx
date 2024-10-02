@@ -20,7 +20,6 @@ import { ThemeProvider as RestyleThemeProvider } from "@/context/ThemeContext"; 
 
 import "@/i18n";
 
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -43,13 +42,11 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <LanguageProvider>
-        <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-          <RestyleThemeProvider>
-            <SessionProvider>
-              <Stack screenOptions={{ headerShown: false }} />
-            </SessionProvider>
-          </RestyleThemeProvider>
-        </ThemeProvider>
+        <RestyleThemeProvider>
+          <SessionProvider>
+            <Stack screenOptions={{ headerShown: false }} />
+          </SessionProvider>
+        </RestyleThemeProvider>
       </LanguageProvider>
     </Provider>
   );

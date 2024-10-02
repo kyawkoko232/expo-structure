@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { useTheme } from '@/context/ThemeContext'; // Theme context
 import { useLanguage } from '@/context/LanguageContext'; // Language context
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
+import ReactNativeElementDropdownComponent from '@/components/dropdown/ReactNativeElementDropdown';
 
 const SettingsScreen = () => {
   const { t } = useTranslation();
@@ -15,49 +15,42 @@ const SettingsScreen = () => {
     <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Theme Section */}
-        <Text style={[styles.header, { color: currentTheme.colors.text }]}>Theme Settings</Text>
-        <View style={styles.buttonContainer}>
-          {getThemeKeys().map((themeKey) => (
-            <TouchableOpacity
-              key={themeKey}
-              style={[styles.themeButton, { backgroundColor: currentTheme.colors.primary }]}
-              onPress={() => changeTheme(themeKey)}
-            >
-              <Text style={[styles.buttonText, { color: currentTheme.colors.text }]}>
-                Switch to {themeKey}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <Text style={[styles.header, { color: currentTheme.colors.text }]}>
+          {t("theme.settings")} {/* You can use translation keys for text */}
+        </Text>
+        <ReactNativeElementDropdownComponent
+          data={getThemeKeys().map(themeKey => ({
+            label: themeKey === 'auto' ? 'Auto' : themeKey.charAt(0).toUpperCase() + themeKey.slice(1),
+            value: themeKey,
+          }))}
+          currentSelection={currentTheme.name || 'light'} // Fallback to a default theme name
+          onChange={changeTheme}
+          placeholder={t("theme.select_theme")}
+        />
 
         {/* Language Section */}
         <Text style={[styles.header, { color: currentTheme.colors.text, marginTop: 30 }]}>
-        {t("theme.language setting")}
+          {t("theme.language setting")}
         </Text>
         <Text style={[styles.text, { color: currentTheme.colors.text }]}>
-          Current Language: {currentLanguage}
+          {t("theme.current_language")}: {currentLanguage} {/* Use translation for the current language label */}
         </Text>
-        <View style={styles.buttonContainer}>
-          {getAvailableLanguages().map((language) => (
-            <TouchableOpacity
-              key={language}
-              style={[styles.languageButton, { backgroundColor: currentTheme.colors.secondary }]}
-              onPress={() => changeLanguage(language)}
-            >
-              <Text style={[styles.buttonText, { color: currentTheme.colors.text }]}>
-                Switch to {language}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <ReactNativeElementDropdownComponent
+          data={getAvailableLanguages().map(lang => ({ label: lang, value: lang }))}
+          currentSelection={currentLanguage}
+          onChange={changeLanguage}
+          placeholder={t("theme.select_language")}
+        />
 
         {/* Theme Colors Display */}
         <View style={styles.themeColorContainer}>
-          <Text style={[styles.header, { color: currentTheme.colors.text }]}>Theme Colors:</Text>
+          <Text style={[styles.header, { color: currentTheme.colors.text }]}>
+            {t("theme.colors")} {/* Use translation for the theme colors label */}
+          </Text>
           {Object.entries(currentTheme.colors).map(([key, value]) => (
             <View key={key} style={styles.colorItem}>
               <Text style={[styles.colorText, { color: currentTheme.colors.text }]}>
-                {key}:
+                {key.charAt(0).toUpperCase() + key.slice(1)}:
               </Text>
               <View style={[styles.colorBox, { backgroundColor: value }]} />
               <Text style={[styles.colorCode, { color: currentTheme.colors.text }]}>{value}</Text>
@@ -87,35 +80,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginBottom: 10,
-  },
-  buttonContainer: {
-    marginVertical: 10,
-  },
-  themeButton: {
-    marginVertical: 5,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 4,
-  },
-  languageButton: {
-    marginVertical: 5,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 4,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '500',
   },
   themeColorContainer: {
     marginTop: 30,

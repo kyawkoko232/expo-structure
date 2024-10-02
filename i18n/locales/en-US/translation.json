@@ -33,7 +33,10 @@
   },
 
   "theme" : {
-    "language setting" : "Language Setting"
+    "language setting" : "Language Setting",
+    "settings" : "Theme Setting",
+    "colors" : "Colors",
+    "current_language" : "Current Language"
   },
   "features": {
     "title": "Features",

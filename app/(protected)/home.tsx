@@ -3,10 +3,13 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, useRouter } from "expo-router";
 import useAuth from "@/helpers/useAuth";
+import { useTheme } from "@/context/ThemeContext";
+
 
 const Home = () => {
   const { session, handleSignOut } = useAuth(); // Use the hook to get session and signOut
   const router = useRouter();
+  const { currentTheme, changeTheme, getThemeKeys } = useTheme();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -22,6 +25,12 @@ const Home = () => {
           <TouchableOpacity style={styles.primaryButton}>
             <Link href="/blog" style={styles.linkText}>
               Go to Blog
+            </Link>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.primaryButton}>
+            <Link href="/(protected)/settings/theme/" style={styles.linkText}>
+              Theme Setting
             </Link>
           </TouchableOpacity>
 

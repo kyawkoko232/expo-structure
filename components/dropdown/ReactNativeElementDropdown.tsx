@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useTheme } from '@/context/ThemeContext'; // Ensure the path is correct
 
 type DropdownItem = {
   label: string;
@@ -31,39 +32,32 @@ const ReactNativeElementDropdownComponent: React.FC<ReactNativeElementDropdownCo
   label = '',
   icon = 'Safety',
 }) => {
+  const { currentTheme } = useTheme(); // Get the current theme
   const [isFocus, setIsFocus] = useState(false);
 
-  const renderLabel = () => {
-    if (currentSelection || isFocus) {
-      return (
-        <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-          {label}
-        </Text>
-      );
-    }
-    return null;
-  };
-
-  // Ensure currentSelection is a string (the expected type for value prop)
-  const selectedValue = currentSelection ? String(currentSelection) : null;
+  const renderLabel = () => (currentSelection || isFocus) ? (
+    <Text style={[styles.label, { color: isFocus ? currentTheme.colors.primary : currentTheme.colors.text }]}>
+      {label}
+    </Text>
+  ) : null;
 
   return (
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
+        style={[styles.dropdown, isFocus && { borderColor: currentTheme.colors.primary }]}
+        placeholderStyle={[styles.placeholderStyle, { color: currentTheme.colors.text }]}
+        selectedTextStyle={[styles.selectedTextStyle, { color: currentTheme.colors.text }]}
+        inputSearchStyle={[styles.inputSearchStyle, { color: currentTheme.colors.text }]}
         iconStyle={styles.iconStyle}
         data={data}
         search
         maxHeight={300}
         labelField={labelField}
         valueField={valueField}
-        placeholder={!isFocus ? placeholder : '...'}
+        placeholder={isFocus ? '...' : placeholder}
         searchPlaceholder={searchPlaceholder}
-        value={selectedValue} // Use string representation of the currentSelection
+        value={currentSelection ? String(currentSelection) : null}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={(item) => {
@@ -73,7 +67,7 @@ const ReactNativeElementDropdownComponent: React.FC<ReactNativeElementDropdownCo
         renderLeftIcon={() => (
           <AntDesign
             style={styles.icon}
-            color={isFocus ? 'blue' : 'black'}
+            color={isFocus ? currentTheme.colors.primary : currentTheme.colors.text}
             name={icon}
             size={20}
           />
@@ -92,7 +86,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 50,
-    borderColor: 'gray',
+    borderColor: 'gray', // Default color, will be overridden by theme
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
@@ -107,7 +101,6 @@ const styles = StyleSheet.create({
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,
-    borderRadius: 20,
   },
   placeholderStyle: {
     fontSize: 16,
