@@ -12,9 +12,9 @@ import HookFormInput from "@/components/form/HookFormInput.component";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "@/providers/SessionProvider";
-
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/context/ThemeContext";
 
 // Zod schema for validation
 const formSchema = z.object({
@@ -22,15 +22,16 @@ const formSchema = z.object({
   password: z.string().min(4, "Password must be at least 4 characters"),
 });
 
-type FormFields = z.infer<typeof formSchema>; // Infer the form field types
+type FormFields = z.infer<typeof formSchema>;
 
-// Login.tsx
 const Login = () => {
+  const { t } = useTranslation();
+  const { currentTheme } = useTheme();
+
   const { signIn, session, isLoading } = useSession();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
-  const { t } = useTranslation();
 
   const {
     control,
@@ -60,13 +61,22 @@ const Login = () => {
 
   if (isLoading || loading) {
     return (
-      <ActivityIndicator size="large" color="#0000ff" style={styles.spinner} />
+      <ActivityIndicator
+        size="large"
+        color={currentTheme.colors.primary}
+        style={styles.spinner}
+      />
     );
   }
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: currentTheme.colors.background },
+        ]}
+      >
         <Link href={"/"}>Go To Main Root ("/")</Link>
         <HookFormInput
           control={control}
@@ -75,7 +85,11 @@ const Login = () => {
           placeholder="kyawkyaw@gmail.com"
           inputMode="email"
           errorMessage={errors.email?.message}
+          borderColor={currentTheme.colors.border} // Pass the border color from theme
+          textColor={currentTheme.colors.text} // Optional: if you want to set text color
+          placeholderColor={currentTheme.colors.placeholder} // Optional: if you want to set placeholder color
         />
+
         <HookFormInput
           control={control}
           name="password"
@@ -83,12 +97,32 @@ const Login = () => {
           placeholder="Enter your password"
           inputMode="password"
           errorMessage={errors.password?.message}
+          borderColor={currentTheme.colors.border} // Pass the border color from theme
+          textColor={currentTheme.colors.text} // Optional
+          placeholderColor={currentTheme.colors.placeholder} // Optional
         />
-        {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
+        {errorMessage && (
+          <Text
+            style={[styles.errorText, { color: currentTheme.colors.danger }]}
+          >
+            {errorMessage}
+          </Text>
+        )}
         <TouchableOpacity
-          style={styles.loginButton}
-          onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.loginButtonText}>{t('auth.login')}</Text>
+          style={[
+            styles.loginButton,
+            { backgroundColor: currentTheme.colors.primary },
+          ]}
+          onPress={handleSubmit(onSubmit)}
+        >
+          <Text
+            style={[
+              styles.loginButtonText,
+              { color: currentTheme.colors.text },
+            ]}
+          >
+            {t("auth.login")}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -101,21 +135,18 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-
   loginButton: {
-    backgroundColor: "#007bff", // Primary button color
-    paddingVertical: 10, // Vertical padding
-    paddingHorizontal: 20, // Horizontal padding
-    borderRadius: 8, // Rounded corners
-    alignItems: "center", // Center text horizontally
-    justifyContent: "center", // Center text vertically
-    marginTop: 20, // Space above the button
-    width: "100%", // Full width
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    width: "100%",
   },
   loginButtonText: {
-    color: "#fff", // Text color
-    fontSize: 16, // Text size
-    fontWeight: "bold", // Bold text
+    fontSize: 16,
+    fontWeight: "bold",
   },
   container: {
     padding: 16,
@@ -126,13 +157,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
-  },
   errorText: {
-    color: "red",
     marginTop: 10,
   },
   spinner: {

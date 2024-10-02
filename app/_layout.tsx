@@ -11,9 +11,13 @@ import { SessionProvider } from "@/providers/SessionProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider as RestyleThemeProvider } from "@/context/ThemeContext"; // Import your custom ThemeProvider
 
-import { Poppins_400Regular, Poppins_700Bold } from "@expo-google-fonts/poppins";
+import {
+  Poppins_400Regular,
+  Poppins_700Bold,
+} from "@expo-google-fonts/poppins";
 import { Padauk_400Regular } from "@expo-google-fonts/padauk";
 
+import { StatusBar } from "expo-status-bar";
 import "@/i18n";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -22,9 +26,10 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   // Load the required fonts
   const [fontsLoaded] = useFonts({
-    poppins : Poppins_400Regular,
-    poppins_bold : Poppins_700Bold,
+    poppins: Poppins_400Regular,
+    poppins_bold: Poppins_700Bold,
     padauk_regular: Padauk_400Regular,
+    mm_sagar: require("../assets/fonts/MyanmarSagar.ttf"),
   });
 
   useEffect(() => {
@@ -46,6 +51,7 @@ export default function RootLayout() {
       <LanguageProvider>
         <RestyleThemeProvider>
           <SessionProvider>
+            <StatusBar style="auto" />
             <Stack screenOptions={{ headerShown: false }} />
           </SessionProvider>
         </RestyleThemeProvider>

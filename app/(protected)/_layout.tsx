@@ -9,9 +9,19 @@ const ProtectedRoute = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (session === undefined) {
+      // Early return if session is still being determined to avoid navigation errors
+      return;
+    }
+
+    // Defer navigation to prevent navigating before root layout is mounted
     if (!session) {
-      console.log("session", session, 'Redirecting to Login Page from Layout Control');
-      router.replace("/login"); // Redirect to login if session is not present
+      const timeoutId = setTimeout(() => {
+        console.log("session", session, "Redirecting to Login Page from Layout Control");
+        router.replace("/login"); // Redirect to login if session is not present
+      }, 0);
+
+      return () => clearTimeout(timeoutId); // Cleanup in case the component unmounts
     } else {
       console.log("session exists, can access protected routes");
       setLoading(false); // Set loading to false if session exists

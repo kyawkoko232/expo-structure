@@ -1,23 +1,23 @@
 // textVariants.ts
 export const textVariants = {
-  defaults: {
+  default: {
     color: "text",
     fontSize: 16,
-    fontFamily: "poppins", // Use the key defined in useFonts
+    fontFamily: "poppins", // Define fallback fonts as a string
   },
   primary: {
     color: "primary",
     fontSize: 16,
-    fontFamily: "poppins_bold", // Use the key for bold font
+    fontFamily: "poppins_bold, poppins", // Fallback to 'poppins' and 'System'
   },
   secondary: {
     color: "secondary",
     fontSize: 16,
-    fontFamily: "padauk_regular", // Use the key for Padauk font
+    fontFamily: "padauk_regular", // Fallback to 'System'
   },
   title: {
     color: "text",
     fontSize: 24,
-    fontFamily: "poppins_bold", // Use the bold font for titles
+    fontFamily: "poppins_bold, poppins", // Fallback to 'poppins' and 'System'
   },
 };

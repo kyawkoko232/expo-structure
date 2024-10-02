@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { themes, Theme } from '@/theme/theme'; // Adjust the import path and Theme as necessary
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useColorScheme } from 'react-native';
-
+import { ThemeProvider as RestyleThemeProvider } from '@shopify/restyle';
 // Define the shape of the context data
 interface ThemeContextType {
     currentTheme: Theme;
@@ -60,7 +60,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={{ currentTheme, changeTheme, getThemeKeys }}>
-            {children}
+             <RestyleThemeProvider theme={currentTheme}>
+             {children}
+             </RestyleThemeProvider>
+          
         </ThemeContext.Provider>
     );
 };

@@ -1,128 +1,85 @@
-import React, { useState } from "react";
-import { Controller, Control } from "react-hook-form";
-import {
-  StyleSheet,
-  TextInput,
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { useTheme } from "@shopify/restyle";
+import React from "react";
+import { Controller } from "react-hook-form";
+import { StyleSheet, TextInput, Text, View } from "react-native";
 
-
-interface FormInputProps {
-  control: Control<any>;
+interface HookFormInputProps {
+  control: any; // Replace with proper type for your control
   name: string;
   label: string;
-  placeholder: string;
-  inputMode?: "text" | "numeric" | "email" | "tel" | "password";
+  placeholder?: string;
+  inputMode?: "text" | "email" | "password"; // Define input modes as needed
   errorMessage?: string;
-  color?: string;
+  borderColor?: string; // New prop for border color
+  textColor?: string; // New prop for text color
+  placeholderColor?: string; // New prop for placeholder color
 }
 
-const HookFormInput: React.FC<FormInputProps> = ({
+const HookFormInput: React.FC<HookFormInputProps> = ({
   control,
   name,
   label,
   placeholder,
   inputMode = "text",
   errorMessage,
-  color = "#000",
-  ...restProps
+  borderColor,
+  textColor,
+  placeholderColor,
 }) => {
-  const [isPasswordVisible, setPasswordVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!isPasswordVisible);
-  };
-
-  const isPassword = inputMode === "password";
+  const theme = useTheme();
 
   return (
     <View style={styles.container}>
-    <Text {...restProps} style={[styles.label, { color }]}>  
-      {label}
-      </Text>
-      <View style={styles.inputContainer}>
-        <Controller
-          control={control}
-          name={name}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={styles.input}
-              placeholder={placeholder}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              secureTextEntry={isPassword && !isPasswordVisible}
-              autoCapitalize="none"
-              keyboardType={
-                inputMode === "numeric"
-                  ? "numeric"
-                  : inputMode === "email"
-                  ? "email-address"
-                  : "default"
-              }
-              placeholderTextColor="#9CA3AF" // Placeholder color
-            />
-          )}
-        />
-        {isPassword && (
-          <TouchableOpacity
-            onPress={togglePasswordVisibility}
-            style={styles.iconContainer}
-          >
-            <MaterialIcons
-              name={isPasswordVisible ? "visibility" : "visibility-off"}
-              size={24}
-              color="#9CA3AF"
-            />
-          </TouchableOpacity>
+      <Text style={[styles.label, { color: theme.colors.text }]}>{label}</Text>
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[
+              styles.input,
+              {
+                borderColor: borderColor || theme.colors.border, // Use border color prop or fallback to theme
+                color: textColor || theme.colors.text, // Use text color prop or fallback to theme
+              },
+            ]}
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+            placeholder={placeholder}
+            placeholderTextColor={placeholderColor || theme.colors.placeholder} // Use placeholder color prop or fallback to theme
+            secureTextEntry={inputMode === "password"} // Conditionally render password input
+            keyboardType={inputMode === "email" ? "email-address" : "default"}
+          />
         )}
-      </View>
-      {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
+        name={name}
+        rules={{ required: true }} // You can customize this as per your validation rules
+      />
+      {errorMessage && (
+        <Text style={[styles.errorText, { color: theme.colors.danger }]}>
+          {errorMessage}
+        </Text>
+      )}
     </View>
   );
 };
 
-export default HookFormInput;
-
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    marginVertical: 8,
   },
   label: {
-    marginBottom: 8,
-    fontSize: 18,
-    fontWeight: "500", // Slightly lighter weight for modern look
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 8, // More rounded corners
-    borderWidth: 1,
-    borderColor: "#D1D5DB",
-    shadowColor: "#000", // Shadow for elevation
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
-    elevation: 3, // Elevation for Android
-    paddingHorizontal: 10, // Padding for better alignment
+    fontSize: 16,
+    marginBottom: 4,
   },
   input: {
-    flex: 1,
-    paddingVertical: 12, // Increase vertical padding for better touch area
-    fontSize: 16, // Slightly larger text for readability
-    color: "#1F2937", // Dark gray text color
-  },
-  iconContainer: {
-    padding: 8,
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
   },
   errorText: {
     marginTop: 4,
-    fontSize: 15, // Slightly larger font size
-    fontWeight: "500",
-    color: "#EF4444",
   },
 });
+
+export default HookFormInput;

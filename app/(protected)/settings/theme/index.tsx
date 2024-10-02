@@ -5,6 +5,7 @@ import { useTheme } from '@/context/ThemeContext'; // Theme context
 import { useLanguage } from '@/context/LanguageContext'; // Language context
 import { useTranslation } from 'react-i18next';
 import ReactNativeElementDropdownComponent from '@/components/dropdown/ReactNativeElementDropdown';
+import { textVariants } from '@/theme/textVariants';
 
 const SettingsScreen = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const SettingsScreen = () => {
     <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* Theme Section */}
-        <Text style={[styles.header, { color: currentTheme.colors.text }]}>
+        <Text style={[styles.header, { ...textVariants.default ,color: currentTheme.colors.text }]}>
           {t("theme.settings")} {/* You can use translation keys for text */}
         </Text>
         <ReactNativeElementDropdownComponent
@@ -29,7 +30,7 @@ const SettingsScreen = () => {
         />
 
         {/* Language Section */}
-        <Text style={[styles.header, { color: currentTheme.colors.text, marginTop: 30 }]}>
+        <Text style={[{ ...textVariants.default,fontSize:20 , color: currentTheme.colors.text, marginTop: 30 }]}>
           {t("theme.language setting")}
         </Text>
         <Text style={[styles.text, { color: currentTheme.colors.text }]}>
