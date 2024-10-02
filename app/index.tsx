@@ -1,17 +1,19 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/context/LanguageContext"; // Language context
+import { useTheme } from "@/context/ThemeContext"; // Theme context
+import { textVariants } from "@/theme/textVariants"; // Import text variants
 import ReactNativeElementDropdownComponent from "@/components/dropdown/ReactNativeElementDropdown";
 import useAuth from "@/helpers/useAuth";
 
-const index = () => {
+const Index = () => {
   const { session, handleSignOut } = useAuth(); // Use the hook to get session and signOut
   const { t } = useTranslation();
-  const { currentLanguage, changeLanguage, getAvailableLanguages } =
-    useLanguage();
+  const { currentLanguage, changeLanguage, getAvailableLanguages } = useLanguage();
+  const { currentTheme } = useTheme(); // Get the current theme
   const router = useRouter();
   const availableLanguages = getAvailableLanguages().map((language) => ({
     label: language,
@@ -19,8 +21,10 @@ const index = () => {
   }));
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>{t("home.welcome")}</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: currentTheme.colors.background, paddingHorizontal: 20, justifyContent: "center", alignItems: "center" }}>
+      <Text style={{ ...textVariants.title, color: currentTheme.colors.text }}>
+        {t("home.welcome")}
+      </Text>
 
       <ReactNativeElementDropdownComponent
         data={availableLanguages} // Array of { label: string, value: string }
@@ -34,93 +38,53 @@ const index = () => {
 
       {/* Conditionally render login or sign-out button based on session */}
       {!session ? (
-        <>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => router.push("/(auth)/login")}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-        </>
+        <TouchableOpacity
+          style={{ backgroundColor: currentTheme.colors.primary, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 8, marginVertical: 10, width: "80%", alignItems: "center" }}
+          onPress={() => router.push("/(auth)/login")}
+        >
+          <Text style={{ ...textVariants.defaults, color: currentTheme.colors.buttonText }}>Login</Text>
+        </TouchableOpacity>
       ) : (
         <>
           <TouchableOpacity
-            style={styles.button}
+            style={{ backgroundColor: currentTheme.colors.primary, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 8, marginVertical: 10, width: "80%", alignItems: "center" }}
             onPress={() => router.push("/settings/")}
           >
-            <Text style={styles.buttonText}>{t('settings')}</Text>
+            <Text style={{ ...textVariants.defaults, color: currentTheme.colors.buttonText }}>{t('settings')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
+            style={{ backgroundColor: currentTheme.colors.primary, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 8, marginVertical: 10, width: "80%", alignItems: "center" }}
             onPress={handleSignOut} // Sign out button handler
             accessibilityLabel="Sign Out"
           >
-            <Text style={styles.buttonText}>{t('auth.signOut')}</Text>
+            <Text style={{ ...textVariants.defaults, color: currentTheme.colors.buttonText }}>{t('auth.signOut')}</Text>
           </TouchableOpacity>
         </>
       )}
 
       <TouchableOpacity
-        style={styles.button}
+        style={{ backgroundColor: currentTheme.colors.primary, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 8, marginVertical: 10, width: "80%", alignItems: "center" }}
         onPress={() => router.push("/(protected)/home")}
       >
-        <Text style={styles.buttonText}>{t('home.home')}</Text>
+        <Text style={{ ...textVariants.defaults, color: currentTheme.colors.buttonText }}>{t('home.home')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}
+        style={{ backgroundColor: currentTheme.colors.primary, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 8, marginVertical: 10, width: "80%", alignItems: "center" }}
         onPress={() => router.push("/blog/")}
       >
-        <Text style={styles.buttonText}>{t('blog')}</Text>
+        <Text style={{ ...textVariants.defaults, color: currentTheme.colors.buttonText }}>{t('blog')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}
+        style={{ backgroundColor: currentTheme.colors.primary, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 8, marginVertical: 10, width: "80%", alignItems: "center" }}
         onPress={() => router.push("/routes")}
       >
-        <Text style={styles.buttonText}>{t('allRoutes')}</Text>
+        <Text style={{ ...textVariants.defaults, color: currentTheme.colors.buttonText }}>{t('allRoutes')}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export default index;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f0f0f5",
-    paddingHorizontal: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 20,
-  },
-  dropdown: {
-    width: "80%",
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    padding: 10,
-    marginBottom: 20,
-    elevation: 2,
-  },
-  button: {
-    backgroundColor: "#ff6f61",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    marginVertical: 10,
-    width: "80%",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-});
+export default Index;
