@@ -6,6 +6,7 @@ import { RootState } from "@/providers/redux/store";
 import { useGetPostQuery } from "@/providers/redux/services/endpoints/blog.endpoints";
 import { clearSelectedPost } from "@/providers/redux/slices/postSlice";
 import { MaterialIcons } from "@expo/vector-icons"; // Importing Material Icons
+import Card from "@/components/restyle/CardComponent";
 
 const SinglePostPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -47,13 +48,21 @@ const SinglePostPage: React.FC = () => {
             </View>
             <View style={styles.reaction}>
               <MaterialIcons name="thumb-down" size={20} color="#dc3545" />
-              <Text style={styles.reactionText}>{post.reactions?.dislikes}</Text>
+              <Text style={styles.reactionText}>
+                {post.reactions?.dislikes}
+              </Text>
             </View>
             <View style={styles.reaction}>
               <MaterialIcons name="visibility" size={20} color="#6c757d" />
               <Text style={styles.reactionText}>{post.views}</Text>
             </View>
           </View>
+
+          <Card
+            title="Card Title from restyle"
+            content="This is the content of the card. You can include more information here."
+            footer="Footer Information"
+          />
         </View>
       ) : (
         <Text style={styles.errorText}>Post not found</Text> // Handle case where post is null or undefined
