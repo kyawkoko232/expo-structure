@@ -26,14 +26,14 @@ export default function Root() {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      {isLoading ? (
+    isLoading ? (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" color="#0000ff" />
-      ) : onboardingShown ? (
-        <Redirect href="/(protected)/coffee/(tabs)" />
-      ) : (
-        <OnBoardingScreen />
-      )}
-    </View>
+      </View>
+    ) : onboardingShown ? (
+      <Redirect href="/(protected)/coffee/(tabs)" />
+    ) : (
+      <OnBoardingScreen />
+    )
   );
 }
