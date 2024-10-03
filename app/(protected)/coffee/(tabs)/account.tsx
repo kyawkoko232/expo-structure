@@ -1,147 +1,193 @@
-import React from "react";
 import {
   View,
   Text,
+  Pressable,
   StyleSheet,
-  TouchableOpacity,
+  Dimensions,
   ScrollView,
 } from "react-native";
+import React from "react";
+import { useSession } from "@/providers/SessionProvider";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Animated, {
+  useSharedValue,
+  withSpring,
+  withTiming,
+  useAnimatedStyle,
+  runOnUI,
+} from "react-native-reanimated";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Image } from "expo-image";
+import { StatusBar } from "expo-status-bar";
 
-import { useTheme } from "@/context/ThemeContext"; // Theme context
+import { Stack, useRouter } from "expo-router";
+import { useTheme } from "@/context/ThemeContext";
+import { createText } from "@shopify/restyle";
+import { Theme } from "@/theme/theme";
+import Cart from "@/components/Cafe/Cart";
 
-const SettingsScreen = () => {
-  const { currentTheme, changeTheme, getThemeKeys } = useTheme();
+const blurhash =
+  "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
+
+const { width, height } = Dimensions.get("window");
+
+export default function Account() {
+  const { currentTheme } = useTheme();
+  const color = currentTheme.colors;
+  const Text = createText<Theme>();
+  const router = useRouter();
+  const { signOut } = useSession();
+  const scale = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   return (
     <SafeAreaView
-      style={[
-        styles.container,
-        { backgroundColor: currentTheme.colors.background },
-      ]}
+      style={{
+        minHeight: height,
+        backgroundColor: color.secondary,
+        paddingHorizontal: 20,
+      }}
     >
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Theme Section */}
-        <Text style={[styles.header, { color: currentTheme.colors.text }]}>
-          Theme Settings
-        </Text>
-        <View style={styles.buttonContainer}>
-          {getThemeKeys().map((themeKey) => (
-            <TouchableOpacity
-              key={themeKey}
-              style={[
-                styles.themeButton,
-                { backgroundColor: currentTheme.colors.primary },
-              ]}
-              onPress={() => changeTheme(themeKey)}
+      <StatusBar style="dark" />
+      <View style={styles.topContainer}>
+        <View>
+          <Text variant="titleA">Account</Text>
+          <Text variant="textA">Welcome Ykt!</Text>
+        </View>
+        <Image
+          style={styles.imagePng}
+          source={require("@/assets/images/PNG image.png")}
+          placeholder={{ blurhash }}
+          contentFit="cover"
+          transition={1000}
+        />
+      </View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ paddingHorizontal: 25, marginTop: 10 }}
+      >
+        <View>
+          <Text variant="titleB">Profile</Text>
+          <View style={{ marginVertical: 10, gap: 10 }}>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
             >
-              <Text
-                style={[styles.buttonText, { color: currentTheme.colors.text }]}
-              >
-                Switch to {themeKey}
-              </Text>
-            </TouchableOpacity>
-          ))}
+              <Text variant="textA">Personal Info</Text>
+              <Pressable>
+                <Ionicons
+                  name="information-circle-outline"
+                  size={24}
+                  color="black"
+                />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Cards & Payments</Text>
+              <Pressable>
+                <Ionicons name="card-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Transaction History</Text>
+              <Pressable>
+                <Ionicons name="options-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Privacy & Data</Text>
+              <Pressable>
+                <Ionicons name="hand-left-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Account ID</Text>
+              <Pressable>
+                <Ionicons name="id-card-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+          </View>
         </View>
 
-        {/* Theme Colors Display */}
-        <View style={styles.themeColorContainer}>
-          <Text style={[styles.header, { color: currentTheme.colors.text }]}>
-            Theme Colors:
-          </Text>
-          {Object.entries(currentTheme.colors).map(([key, value]) => (
-            <View key={key} style={styles.colorItem}>
-              <Text
-                style={[styles.colorText, { color: currentTheme.colors.text }]}
-              >
-                {key}:
-              </Text>
-              <View style={[styles.colorBox, { backgroundColor: value }]} />
-
-              <Text
-                style={[styles.colorCode, { color: currentTheme.colors.text }]}
-              >
-                {value}
-              </Text>
+        <View style={{marginTop:10}}>
+          <Text variant="titleB">Security</Text>
+          <View style={{ marginVertical: 10, gap: 10 }}>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Personal Info</Text>
+              <Pressable>
+                <Ionicons
+                  name="information-circle-outline"
+                  size={24}
+                  color="black"
+                />
+              </Pressable>
             </View>
-          ))}
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Cards & Payments</Text>
+              <Pressable>
+                <Ionicons name="card-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Transaction History</Text>
+              <Pressable>
+                <Ionicons name="options-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Privacy & Data</Text>
+              <Pressable>
+                <Ionicons name="hand-left-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text variant="textA">Account ID</Text>
+              <Pressable>
+                <Ionicons name="id-card-outline" size={24} color="black" />
+              </Pressable>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-};
-
-export default SettingsScreen;
-
+}
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: 20,
-    paddingBottom: 50,
-  },
-  header: {
-    fontSize: 22,
-    fontWeight: "bold",
-    marginBottom: 15,
-  },
-  text: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  buttonContainer: {
-    marginVertical: 10,
-  },
-  themeButton: {
-    marginVertical: 5,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 4,
-  },
-  languageButton: {
-    marginVertical: 5,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 4,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "500",
-  },
-  themeColorContainer: {
-    marginTop: 30,
-    padding: 15,
-    borderRadius: 10,
-    backgroundColor: "rgba(0,0,0,0.05)",
-  },
-  colorItem: {
+  topContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 5,
+    justifyContent: "space-between",
+    marginTop: 20,
   },
-  colorText: {
-    fontSize: 16,
-    flex: 1,
-  },
-  colorBox: {
-    width: 30,
-    height: 30,
-    marginHorizontal: 10,
-    borderRadius: 4,
-  },
-  colorCode: {
-    fontSize: 14,
-    flex: 2,
+  imagePng: {
+    width: 80,
+    height: 80,
   },
 });

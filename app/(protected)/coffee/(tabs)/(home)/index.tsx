@@ -58,7 +58,7 @@ const HomePage = () => {
 
   const saveProductToRedux = (id: string, name: string) => {
     router.push({
-      pathname: "/detail",
+      pathname: "/(protected)/coffee/(home)/detail",
       params: { id, name }, // Data passed as query parameters
     });
   };
@@ -104,7 +104,7 @@ const HomePage = () => {
         <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
           <View style={styles.topContainer}>
             <View>
-              <Text variant="title">Good Morning!</Text>
+              <Text variant="titleB">Good Morning!</Text>
               <Text variant="textA">Login and get free ☕️</Text>
             </View>
             <Image
