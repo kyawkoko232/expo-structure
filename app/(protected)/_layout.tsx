@@ -75,6 +75,12 @@ const ProtectedRouteLayout = () => {
       />
 
       <Stack.Screen
+        name="coffee"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
         name="settings"
         options={{
           headerTitle: "Settings",
