@@ -15,29 +15,24 @@ export const textVariants = {
     fontSize: 16,
     fontFamily: "padauk_regular", // Fallback to 'System'
   },
-  title: {
-    color: "text",
-    fontSize: 24,
-    fontFamily: "poppins_bold, poppins", // Fallback to 'poppins' and 'System'
-  },
+
   title: {
     color: "text",
     fontSize: 20,
-    fontFamily: "Poppins_700Bold, Padauk_400Regular",
+    fontFamily: "poppins",
     fontWeight: "700", // Fallback to Padauk
   },
   defaults: {
     color: "text",
     fontSize: 16,
-    fontFamily: "Poppins_400Regular, Padauk_400Regular", // Fallback to Padauk_400Regular if Poppins is not available
+     fontFamily: "poppins", 
   },
   
   textA: {
     fontSize: 19,
-    // marginTop:8,
     color: "text",
-    fontFamily: "Poppins_400Regular, Padauk_400Regular",
-    fontWeight: "400", // Fallback to Padauk
+     fontFamily: "poppins",
+    fontWeight: "400", 
     marginTop: "md",
     lineHeight: 22,
     opacity: 0.7,
@@ -45,8 +40,8 @@ export const textVariants = {
 
   link: {
     color: "success",
-    fontFamily: "Poppins_700Bold, Padauk_400Regular",
+    fontFamily: "poppins",
     fontSize: 15,
-    fontWeight: "500", // Fallback to Padauk
+    fontWeight: "500", 
   },
 };

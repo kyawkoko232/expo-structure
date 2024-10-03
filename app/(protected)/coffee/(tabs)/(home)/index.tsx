@@ -3,7 +3,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
@@ -81,11 +80,11 @@ const HomePage = () => {
     <SafeAreaView
       style={{
         minHeight: height,
-        backgroundColor: color.secondary,
+        backgroundColor: color.background,
       }}
     >
       {/* Nav Bar */}
-      <View style={[styles.navContainer, { backgroundColor: color.secondary }]}>
+      <View style={[styles.navContainer, { backgroundColor: color.background }]}>
         <StatusBar style="dark" />
         <Pressable onPress={onPressToTop}>
           <Image
@@ -96,7 +95,7 @@ const HomePage = () => {
             transition={1000}
           />
         </Pressable>
-        <Pressable onPress={() => router.navigate("/order")}>
+        <Pressable onPress={() => router.navigate("/coffee/order")}>
           <Cart />
         </Pressable>
       </View>
@@ -117,46 +116,48 @@ const HomePage = () => {
             />
           </View>
 
-          <Box backgroundColor="success" style={styles.top2Container}>
-            <Text style={{ color: color.primary, fontSize: 20 }}>
+         <View style={{marginHorizontal:5}}>
+         <Box backgroundColor="success" style={styles.top2Container}>
+            <Text style={{ color: color.background, fontSize: 20 }}>
               Join the Rewards program to enjoy free beverages, special offers
               and more!
             </Text>
 
             <View style={styles.buttonContainer}>
               <Pressable
-                style={[styles.button, { backgroundColor: color.primary }]}
+                style={[styles.button, { backgroundColor: color.secondary }]}
               >
-                <Text style={{ color: color.white, fontWeight: "500" }}>
+                <Text style={{ color: color.background, fontWeight: "500" }}>
                   JOIN NOW
                 </Text>
               </Pressable>
               <Pressable
-                style={[styles.button, { backgroundColor: color.accent }]}
+                style={[styles.button, { backgroundColor: color.background }]}
               >
-                <Text style={{ color: color.primary, fontWeight: "500" }}>
+                <Text style={{ color: color.text, fontWeight: "500" }}>
                   GUEST ORDER
                 </Text>
               </Pressable>
             </View>
           </Box>
           <View
-            style={[styles.top3Container, { backgroundColor: color.white }]}
+            style={[styles.top3Container, { backgroundColor: color.background }]}
           >
             <Pressable>
               <Text
-                style={{ color: color.black, fontSize: 17, fontWeight: "500" }}
+                style={{ color: color.text, fontSize: 17, fontWeight: "500" }}
               >
                 Already have an account?
               </Text>
             </Pressable>
             <Pressable
               style={styles.loginBtn}
-              onPress={() => router.navigate("/login")}
+              onPress={() => router.navigate("/(auth)/login")}
             >
               <Text style={[styles.text, { color: color.success }]}>Login</Text>
             </Pressable>
           </View>
+         </View>
 
           <View>
             <Title
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
     width: width / 2.5,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 16,
+    paddingVertical: 13,
     borderRadius: 20,
   },
   top3Container: {

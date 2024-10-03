@@ -1,3 +1,4 @@
+import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -6,6 +7,7 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from "react-native-responsive-dimensions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
   onboardingSwiperData,
@@ -14,17 +16,10 @@ import {
 
 const OnBoardingScreen = () => {
   const renderItem = ({ item }: { item: onboardingSwiperDataType }) => (
-    <LinearGradient
-      colors={["#F0D5AD", "#F8EBD8"]}
-      style={styles.container}
-    >
+    <LinearGradient colors={["#F0D5AD", "#F8EBD8"]} style={styles.container}>
       <View style={styles.Container}>
         <View>
-          <Image
-            source={item.image}
-            style={styles.image}
-            resizeMode="contain"
-          />
+          <Image source={item.image} style={styles.image} resizeMode="contain" />
         </View>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
@@ -32,16 +27,24 @@ const OnBoardingScreen = () => {
     </LinearGradient>
   );
 
+  // Function to handle onboarding completion
+  const handleOnboardingComplete = async () => {
+    try {
+      // Save the flag to AsyncStorage
+      await AsyncStorage.setItem("onboardingShown", "true");
+      // Navigate to the main app (e.g., coffee tab)
+      router.push("/(protected)/coffee/(tabs)");
+    } catch (error) {
+      console.error("Error storing onboarding status:", error);
+    }
+  };
+
   return (
     <AppIntroSlider
       renderItem={renderItem}
       data={onboardingSwiperData}
-      onDone={() => {
-        router.push("/(protected)/coffee/(tabs)");
-      }}
-      onSkip={() => {
-        router.push("/(protected)/coffee/(tabs)");
-      }}
+      onDone={handleOnboardingComplete}
+      onSkip={handleOnboardingComplete}
       renderNextButton={() => (
         <View style={styles.buttonContainer}>
           <Text style={styles.ScrollButtonText}>Next</Text>

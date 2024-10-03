@@ -43,7 +43,7 @@ const Login = () => {
 
   useEffect(() => {
     if (session) {
-      router.replace("/(protected)/home");
+      router.replace("/(protected)/");
     }
   }, [session, router]);
 
@@ -118,7 +118,7 @@ const Login = () => {
           <Text
             style={[
               styles.loginButtonText,
-              { color: currentTheme.colors.text },
+              { color: currentTheme.colors.background },
             ]}
           >
             {t("auth.login")}
