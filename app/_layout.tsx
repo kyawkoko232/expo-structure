@@ -14,6 +14,7 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import { Padauk_400Regular } from "@expo-google-fonts/padauk";
+import { View } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,8 +29,15 @@ const RootLayoutInner = () => {
   return (
     <>
       {/* Conditionally set the StatusBar style based on the theme */}
-      <StatusBar style={currentTheme.name === "dark" ? "light" : "dark"} />
-      <Stack screenOptions={{ headerShown: false }} />
+     <View style={{ flex: 1, backgroundColor: currentTheme.colors.background }}>
+     <StatusBar style={currentTheme.name === "dark" ? "light" : "dark"} />
+      <Stack screenOptions={{ 
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: currentTheme.colors.background,
+        },
+         }} />
+     </View>
     </>
   );
 };
