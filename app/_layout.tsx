@@ -8,6 +8,7 @@ import { store } from "@/providers/redux/store";
 import { SessionProvider } from "@/providers/SessionProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider, useTheme } from "@/context/ThemeContext"; // Import ThemeProvider and useTheme
+
 import {
   Poppins_400Regular,
   Poppins_700Bold,

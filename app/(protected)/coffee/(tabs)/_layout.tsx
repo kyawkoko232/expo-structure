@@ -6,10 +6,12 @@ import { ThemedText } from "@/components/ThemedText";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Redirect, Tabs } from "expo-router";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function TabLayout() {
   const { session, isLoading } = useSession();
   const colorScheme = useColorScheme();
+  const {currentTheme} = useTheme();
 
   if (isLoading) {
     return (
@@ -32,6 +34,10 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarStyle: { 
+          backgroundColor: currentTheme.colors.background // Set background color here
+        }
+        
       }}
     >
       <Tabs.Screen
