@@ -161,7 +161,7 @@ const Index = () => {
         </Text>
       </TouchableOpacity>
 
-      <Box backgroundColor="primary" padding="md" borderRadius="md">
+      <Box variant="card.default" backgroundColor="accent" padding="md" borderRadius="md">
         <TextStyled variant="title" style={{ color: currentTheme.colors.text }}>
           Example Title
         </TextStyled>

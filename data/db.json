@@ -1,0 +1,202 @@
+{
+  "requiredInfo": {
+    "coffeeCategories": [
+      {
+        "id": "uuid1",
+        "name": "Espresso",
+        "image": "espresso.png"
+      },
+      {
+        "id": "uuid2",
+        "name": "Latte",
+        "image": "latte.png"
+      },
+      {
+        "id": "uuid3",
+        "name": "Cappuccino",
+        "image": "cappuccino.png"
+      },
+      {
+        "id": "uuid4",
+        "name": "Americano",
+        "image": "americano.png"
+      },
+      {
+        "id": "uuid5",
+        "name": "Mocha",
+        "image": "mocha.png"
+      },
+      {
+        "id": "uuid6",
+        "name": "Macchiato",
+        "image": "Macchiato.png"
+      },
+      {
+        "id": "uuid7",
+        "name": "Flat White",
+        "image": "Flat White.png"
+      },
+      {
+        "id": "uuid8",
+        "name": "Affogato",
+        "image": "Affogato.png"
+      },
+      {
+        "id": "uuid9",
+        "name": "Cortado",
+        "image": "Cortado.png"
+      },
+      {
+        "id": "uuid10",
+        "name": "Irish Coffee",
+        "image": "Irish Coffee.png"
+      }
+    ],
+
+    "size": [
+      {
+        "label": "small",
+        "value": "small"
+      },
+      {
+        "label": "medium",
+        "value": "medium"
+      },
+      {
+        "label": "large",
+        "value": "large"
+      }
+    ],
+
+    "sugar": [
+      {
+        "label": "0%",
+        "value": "0"
+      },
+      {
+        "label": "25%",
+        "value": "25"
+      },
+      {
+        "label": "50%",
+        "value": "50"
+      },
+      {
+        "label": "75%",
+        "value": "75"
+      }
+    ]
+  },
+
+  "products": [
+    {
+      "id": "uuid1",
+      "name": "Cappuccino",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Cappuccino",
+      "favourite": false,
+      "description": "A classic Italian coffee with equal parts espresso, steamed milk, and foamed milk."
+    },
+    {
+      "id": "uuid2",
+      "name": "Flat White",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "FlatWhite",
+      "favourite": false,
+      "description": "A smooth, creamy coffee with espresso and steamed milk, topped with a thin layer of foam."
+    },
+    {
+      "id": "uuid3",
+      "name": "Espresso",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Espresso",
+      "favourite": false,
+      "description": "A bold and concentrated coffee shot with a rich crema layer."
+    },
+    {
+      "id": "uuid4",
+      "name": "Americano",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Americano",
+      "favourite": false,
+      "description": "Espresso diluted with hot water, providing a smooth, mellow taste."
+    },
+    {
+      "id": "uuid5",
+      "name": "Mocha",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Mocha",
+      "favourite": false,
+      "description": "A chocolate-flavored variant of a latte, with espresso, steamed milk, and chocolate syrup."
+    },
+    {
+      "id": "uuid6",
+      "name": "Macchiato",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Macchiato",
+      "favourite": false,
+      "description": "A shot of espresso topped with a small amount of foamed milk, creating a strong and sharp flavor."
+    },
+    {
+      "id": "uuid7",
+      "name": "Latte",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Latte",
+      "favourite": false,
+      "description": "An espresso-based coffee with steamed milk, offering a smooth, velvety texture."
+    },
+    {
+      "id": "uuid8",
+      "name": "Affogato",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+      "image": "Affogato",
+      "favourite": false,
+      "description": "A dessert-like coffee made by pouring espresso over a scoop of vanilla ice cream."
+    },
+    {
+      "id": "uuid9",
+      "name": "Cortado",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Cortado",
+      "favourite": false,
+      "description": "An espresso cut with a small amount of steamed milk, balancing its strong flavor."
+    },
+    {
+      "id": "uuid10",
+      "name": "Frappuchino",
+      "star": 4.9,
+      "price": 8,
+      "discount": 6.5,
+
+      "image": "Frappuchino",
+      "favourite": false,
+      "description": "A blended iced coffee with whipped cream and a variety of sweet flavors."
+    }
+  ]
+}

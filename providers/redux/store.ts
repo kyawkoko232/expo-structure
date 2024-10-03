@@ -8,10 +8,10 @@ export const store = configureStore({
   reducer: {
     counter: CounterReducer,
     post: postReducer,
-    [ApiService.reducerPath]: ApiService.reducer,  // Ensure `ApiService.reducerPath` is correctly used
+    [ApiService.reducerPath]: ApiService.reducer, 
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(ApiService.middleware),  // Ensure `api.middleware` is correctly used
+    getDefaultMiddleware().concat(ApiService.middleware),  
 });
 
 

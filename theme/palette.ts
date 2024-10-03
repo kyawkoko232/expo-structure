@@ -38,6 +38,19 @@ const palette = {
     border: "#444444", // Darker border color
     placeholder: "#a8a8a8", // Placeholder color in dark mode
     muted: "#9e9e9e", // Muted text color in dark mode
+  },
+
+  coffee : {
+    background: "#F6F2ED", // Darker background for dark mode
+    text: "#272727", // Adjusted text contrast for dark background
+    primary: "#4E8D7C", // Darker primary color
+    secondary: "#4B2C20", // A more vibrant purple for better contrast
+    accent: "#FFFFFF", // A slightly brighter green for accent
+    success: "#28a745", // Same green for success
+    danger: "#e74c3c", // A brighter red for danger
+    warning: "#f39c12", // Slightly muted yellow for warning
+    info: "#3498db", 
+    disable: "#8F8E8E",
   }
 };
 

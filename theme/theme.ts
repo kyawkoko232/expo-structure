@@ -3,6 +3,7 @@ import { createTheme } from "@shopify/restyle";
 import palette from "./palette";
 import { spacing, borderRadii } from "./spacing";
 import { textVariants } from "./textVariants";
+import { cardVariants } from './cardVariants';
 
 // Create themes
 const lightTheme = createTheme({
@@ -39,12 +40,36 @@ const darkTheme = createTheme({
   spacing,
   borderRadii,
   textVariants,
+  cardVariants,
+});
+
+
+
+const coffeeTheme = createTheme({
+  colors: {
+    ...palette.coffee,
+    primary: palette.coffee.primary,
+    secondary: palette.coffee.secondary,
+    accent: palette.coffee.accent,
+    background: palette.coffee.background,
+    text: palette.coffee.text,
+    success: palette.coffee.success,
+    danger: palette.coffee.danger,
+    warning: palette.coffee.warning,
+    info: palette.coffee.info,
+    disable: palette.coffee.disable,
+  },
+  spacing,
+  borderRadii,
+  textVariants,
+  cardVariants,
 });
 
 
 // Export themes
 const themes = {
   light: lightTheme,
+  coffee : coffeeTheme,
   dark: darkTheme,
   auto: 'auto',
 };

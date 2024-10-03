@@ -1,25 +1,36 @@
-type onboardingSwiperDataType = {
-    id : number,
-    title : string,
-    description : string,
-    shortDescription : string,
-    shortDescription2?  : string,
-    image: any,
-
+export interface CategoryType {
+  id: string;
+  name: string;
+  image: any; 
 }
 
+export interface ProductType{
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  favourite: boolean;
+  star: number;
+  discount: number;
+  categories_id: string;
 
-// Define the interface for the blog post structure
-export interface Post {
-    id: number;
-    title: string;
-    body: string;
-    tags: string[]; // Array of strings for tags
-    reactions: {
-      likes: number;
-      dislikes: number;
-    };
-    views: number;
-    userId: number;
-  }
-  
+
+  // categories_id: string;
+}
+
+export interface CupSizes {
+  label: string;
+  value: string;
+}
+
+export interface Sugar {
+  label: string;
+  value: string;
+}
+
+export interface Radio {
+  id: number;
+  label: string;
+  value: string;
+}
