@@ -40,3 +40,6 @@ npx expo install @expo-google-fonts/poppins
 npx expo install @expo-google-fonts/padauk
 ```
 
+```bash
+npx json-server --watch data/db.json --host 192.168.1.116 --port 8000 -s data/coffee
+```

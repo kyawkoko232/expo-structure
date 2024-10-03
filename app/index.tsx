@@ -120,10 +120,10 @@ const Index = () => {
           width: "80%",
           alignItems: "center",
         }}
-        onPress={() => router.push("/(protected)/home")}
+        onPress={() => router.push("/(protected)/coffee/")}
       >
         <Text style={{ ...textVariants.default, color: currentTheme.colors.text }}>
-          {t("home.home")}
+          Cofffee
         </Text>
       </TouchableOpacity>
 

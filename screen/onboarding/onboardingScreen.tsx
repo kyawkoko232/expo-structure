@@ -37,10 +37,10 @@ const OnBoardingScreen = () => {
       renderItem={renderItem}
       data={onboardingSwiperData}
       onDone={() => {
-        router.push("/(protected)/(tabs)/(home)/");
+        router.push("/(protected)/coffee/(tabs)");
       }}
       onSkip={() => {
-        router.push("/(protected)/(tabs)/(home)/");
+        router.push("/(protected)/coffee/(tabs)");
       }}
       renderNextButton={() => (
         <View style={styles.buttonContainer}>
