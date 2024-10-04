@@ -45,7 +45,7 @@ export const textVariants = {
   },
  
   link: {
-    color: "success",
+    color: "primary",
     fontFamily: "poppins",
     fontSize: 15,
     fontWeight: "500",

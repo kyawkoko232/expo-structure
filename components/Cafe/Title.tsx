@@ -23,7 +23,7 @@ export default function Title({ title, action, onPressAction }: titleProps) {
           {title}
         </Text>
         <Pressable onPress={onPressAction}>
-          <Text variant="link">
+          <Text  variant="link">
             {action}
           </Text>
         </Pressable>

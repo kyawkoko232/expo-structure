@@ -30,7 +30,7 @@ const Index = () => {
         alignItems: "center",
       }}
     >
-      <Text style={{ ...textVariants.titleB, color: currentTheme.colors.text }}>
+      <Text style={{ ...textVariants.titleB, color: currentTheme.colors.background }}>
         {t("home.welcome")}
       </Text>
 
@@ -49,7 +49,7 @@ const Index = () => {
           onPress={() => router.push("/(auth)/login")}
         >
           <Text
-            style={{ ...textVariants.default, color: currentTheme.colors.text }}
+            style={{ ...textVariants.default, color: currentTheme.colors.background }}
           >
             Login
           </Text>
@@ -72,7 +72,7 @@ const Index = () => {
             <Text
               style={{
                 ...textVariants.default,
-                color: currentTheme.colors.text,
+                color: currentTheme.colors.background,
               }}
             >
               {t("auth.signOut")}
@@ -94,7 +94,7 @@ const Index = () => {
         onPress={() => router.push("/routes")}
       >
         <Text
-          style={{ ...textVariants.default, color: currentTheme.colors.text }}
+          style={{ ...textVariants.default, color: currentTheme.colors.background }}
         >
           {t("allRoutes")}
         </Text>
@@ -115,7 +115,7 @@ const Index = () => {
         <Text
           style={{
             ...textVariants.default,
-            color: currentTheme.colors.text,
+            color: currentTheme.colors.background,
           }}
         >
           {t("settings")}

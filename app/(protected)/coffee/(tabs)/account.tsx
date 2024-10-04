@@ -47,7 +47,7 @@ export default function Account() {
     <SafeAreaView
       style={{
         minHeight: height,
-        backgroundColor: color.secondary,
+        backgroundColor: color.background,
         paddingHorizontal: 20,
       }}
     >
@@ -73,7 +73,7 @@ export default function Account() {
           <Text variant="titleB">Profile</Text>
           <View style={{ marginVertical: 10, gap: 10 }}>
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between", alignItems:"center" }}
             >
               <Text variant="textA">Personal Info</Text>
               <Pressable>
@@ -86,7 +86,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Cards & Payments</Text>
               <Pressable>
@@ -95,7 +95,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Transaction History</Text>
               <Pressable>
@@ -104,7 +104,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Privacy & Data</Text>
               <Pressable>
@@ -113,7 +113,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Account ID</Text>
               <Pressable>
@@ -127,7 +127,7 @@ export default function Account() {
           <Text variant="titleB">Security</Text>
           <View style={{ marginVertical: 10, gap: 10 }}>
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Personal Info</Text>
               <Pressable>
@@ -140,7 +140,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Cards & Payments</Text>
               <Pressable>
@@ -149,7 +149,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Transaction History</Text>
               <Pressable>
@@ -158,7 +158,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Privacy & Data</Text>
               <Pressable>
@@ -167,7 +167,7 @@ export default function Account() {
             </View>
 
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{ flexDirection: "row", justifyContent: "space-between",alignItems:"center" }}
             >
               <Text variant="textA">Account ID</Text>
               <Pressable>

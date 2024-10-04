@@ -84,7 +84,7 @@ const HomePage = () => {
       }}
     >
       {/* Nav Bar */}
-      <View style={[styles.navContainer,{ backgroundColor: color.accent }]}>
+      <View style={[styles.navContainer, {backgroundColor: currentTheme.colors.background}]}>
         <Pressable onPress={onPressToTop}>
           <Image
             style={styles.image}
@@ -116,7 +116,7 @@ const HomePage = () => {
           </View>
 
          <View style={{marginHorizontal:5}}>
-         <Box backgroundColor="success" style={styles.top2Container}>
+         <Box backgroundColor="primary" style={styles.top2Container}>
             <Text style={{ color: color.background, fontSize: 20 }}>
               Join the Rewards program to enjoy free beverages, special offers
               and more!
@@ -153,7 +153,7 @@ const HomePage = () => {
               style={styles.loginBtn}
               onPress={() => router.navigate("/(auth)/login")}
             >
-              <Text style={[styles.text, { color: color.success }]}>Login</Text>
+              <Text style={[styles.text, { color: color.primary }]}>Login</Text>
             </Pressable>
           </View>
          </View>
@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
 
   image: {
     width: 30,
-    height: 40,
-    resizeMode: "contain",
+    height: 50,
+    resizeMode: "cover",
   },
   topContainer: {
     flexDirection: "row",
