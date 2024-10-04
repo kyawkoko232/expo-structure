@@ -20,6 +20,7 @@ const palette = {
     danger: "#dc3545",
     warning: "#ffc107",
     info: "#17a2b8",
+    disable: "#8F8E8E",
     // Additional colors
     link: "#007bff", 
     border: "#d1d1d1",
@@ -40,6 +41,7 @@ const palette = {
     danger: "#e74c3c",
     warning: "#f39c12",
     info: "#3498db",
+
     // Additional colors
     link: "#1e90ff", 
     border: "#444444", 

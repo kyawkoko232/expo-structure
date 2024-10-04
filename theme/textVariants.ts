@@ -49,8 +49,17 @@ export const textVariants = {
     fontFamily: "poppins",
     fontWeight: "400",
     marginTop: "md",
+
     lineHeight: 22, // Keep as defined
     opacity: 0.7,
+  },
+  paragraph:{ 
+    fontSize: 15,
+    color: "text",
+    fontFamily: "poppins",
+    fontWeight: "400",
+    lineHeight: 22,
+    opacity: 0.6,
   },
 
   link: {
