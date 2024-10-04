@@ -17,6 +17,7 @@ const palette = {
     danger: "#dc3545",
     warning: "#ffc107",
     info: "#17a2b8",
+    disable: "#8F8E8E",
     // Additional colors
     link: "#007bff", // Link color
     border: "#d1d1d1", // Border color
@@ -33,6 +34,7 @@ const palette = {
     danger: "#e74c3c", // A brighter red for danger
     warning: "#f39c12", // Slightly muted yellow for warning
     info: "#3498db", // Brighter blue for info
+    disable: "#8F8E8E",
     // Additional colors
     link: "#1e90ff", // Link color in dark mode
     border: "#444444", // Darker border color
