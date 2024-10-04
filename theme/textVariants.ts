@@ -16,6 +16,13 @@ export const textVariants = {
     fontFamily: "padauk_regular", // Fallback to 'System'
   },
 
+  title: {
+    color: "text",
+    fontSize: 26,
+    fontFamily: "poppins",
+    fontWeight: "600", // Fallback to Padauk
+  },
+
   titleA: {
     color: "text",
     fontSize: 26,
