@@ -24,7 +24,7 @@ const AllRoutes = () => {
       }}
       onPress={() => router.push(href)}
     >
-      <Text style={{ ...textVariants.default, color: currentTheme.colors.text }}>
+      <Text style={{ ...textVariants.default, color: currentTheme.colors.textOpposite }}>
         {label}
       </Text>
     </TouchableOpacity>

@@ -26,30 +26,30 @@ const SettingsScreen = () => {
           onPress={navigateToThemeSelection} // Navigate to theme selection on press
         >
           <View style={styles.row}>
-            <Ionicons name="color-palette-outline" size={24} color={color.secondary} />
-            <Text style={[styles.label, { color: color.text }]}>Theme</Text>
+            <Ionicons name="color-palette-outline" size={24} color={color.textOpposite} />
+            <Text style={[styles.label, { color: color.textOpposite }]}>Theme</Text>
           </View>
         </TouchableOpacity>
 
         {/* Other Settings Options */}
         <TouchableOpacity style={[styles.section, { backgroundColor: color.primary, borderColor: color.border }]}>
           <View style={styles.row}>
-            <Ionicons name="person-circle-outline" size={24} color={color.secondary} />
-            <Text style={[styles.label, { color: color.text }]}>Account</Text>
+            <Ionicons name="person-circle-outline" size={24} color={color.textOpposite} />
+            <Text style={[styles.label, { color: color.textOpposite }]}>Account</Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.section, { backgroundColor: color.primary, borderColor: color.border }]}>
           <View style={styles.row}>
-            <Ionicons name="notifications-outline" size={24} color={color.secondary} />
-            <Text style={[styles.label, { color: color.text }]}>Notifications</Text>
+            <Ionicons name="notifications-outline" size={24} color={color.textOpposite} />
+            <Text style={[styles.label, { color: color.textOpposite }]}>Notifications</Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.section, { backgroundColor: color.primary, borderColor: color.border }]}>
           <View style={styles.row}>
-            <Ionicons name="lock-closed-outline" size={24} color={color.secondary} />
-            <Text style={[styles.label, { color: color.text }]}>Privacy & Security</Text>
+            <Ionicons name="lock-closed-outline" size={24} color={color.textOpposite} />
+            <Text style={[styles.label, { color: color.textOpposite }]}>Privacy & Security</Text>
           </View>
         </TouchableOpacity>
 
