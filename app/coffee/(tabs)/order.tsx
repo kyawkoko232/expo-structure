@@ -13,7 +13,7 @@ export default function Order() {
           // backgroundColor: "#eee",
         }}
         // Find more Lottie files at https://lottiefiles.com/featured
-        source={require("../../../../assets/images/EmptyLottie.json")}
+        source={require("../../../assets/images/EmptyLottie.json")}
       />
       <Text>You don't have any order yet!!!</Text>
     </View>

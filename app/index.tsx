@@ -81,24 +81,6 @@ const Index = () => {
         </>
       )}
 
-      <TouchableOpacity
-        style={{
-          backgroundColor: currentTheme.colors.primary,
-          paddingVertical: 12,
-          paddingHorizontal: 20,
-          borderRadius: 8,
-          marginVertical: 10,
-          width: "80%",
-          alignItems: "center",
-        }}
-        onPress={() => router.push("/routes")}
-      >
-        <Text
-          style={{ ...textVariants.default, color: currentTheme.colors.textOpposite }}
-        >
-          {t("allRoutes")}
-        </Text>
-      </TouchableOpacity>
 
       <TouchableOpacity
         style={{
@@ -110,7 +92,7 @@ const Index = () => {
           width: "80%",
           alignItems: "center",
         }}
-        onPress={() => router.push("/settings/")}
+        onPress={() => router.push("/coffee/(home)/")}
       >
         <Text
           style={{
@@ -118,7 +100,7 @@ const Index = () => {
             color: currentTheme.colors.textOpposite,
           }}
         >
-          {t("settings")}
+          Coffee
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

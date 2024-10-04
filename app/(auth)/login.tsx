@@ -42,7 +42,7 @@ const Login = () => {
 
   useEffect(() => {
     if (session) {
-      router.replace("/(protected)/coffee/(home)/");
+      router.replace("/coffee/(home)/");
     }
   }, [session, router]);
 
