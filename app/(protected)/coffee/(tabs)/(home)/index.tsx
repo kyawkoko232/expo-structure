@@ -103,7 +103,7 @@ const HomePage = () => {
         <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
           <View style={styles.topContainer}>
             <View>
-              <Text variant="title">Good Morning!</Text>
+              <Text variant="titleB">Good Morning!</Text>
               <Text variant="textA">Login and get free ☕️</Text>
             </View>
             <Image

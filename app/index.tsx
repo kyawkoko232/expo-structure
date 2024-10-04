@@ -30,7 +30,7 @@ const Index = () => {
         alignItems: "center",
       }}
     >
-      <Text style={{ ...textVariants.title, color: currentTheme.colors.text }}>
+      <Text style={{ ...textVariants.titleB, color: currentTheme.colors.text }}>
         {t("home.welcome")}
       </Text>
 

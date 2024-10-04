@@ -9,11 +9,13 @@ const getContrastYIQ = (hex) => {
 const palette = {
   light: {
     background: "#f6f8fa",
-    text: getContrastYIQ("#f6f8fa"), // Contrast based on light GitHub background
-    primary: "#e1e4e8",
-    secondary: "#6f42c1",
-    accent: "#28a745",
-    success: "#28a745",
+    text: getContrastYIQ("#f6f8fa"),
+    primary: "#4B2C20",
+    secondary: "#D5BBA2",
+    accent: "#A67C52",
+    success: "#4E8D7C",
+    black:"#272727",
+    white:"#F6F2ED",
     danger: "#dc3545",
     warning: "#ffc107",
     info: "#17a2b8",
@@ -24,15 +26,17 @@ const palette = {
     muted: "#6c757d", // Muted text color
   },
   dark: {
-    background: "#1e1e1e", // Darker background for dark mode
-    text: getContrastYIQ("#1e1e1e"), // Adjusted text contrast for dark background
-    primary: "#2d2d2d", // Darker primary color
-    secondary: "#9b59b6", // A more vibrant purple for better contrast
-    accent: "#1abc9c", // A slightly brighter green for accent
-    success: "#28a745", // Same green for success
-    danger: "#e74c3c", // A brighter red for danger
-    warning: "#f39c12", // Slightly muted yellow for warning
-    info: "#3498db", // Brighter blue for info
+    background: "#08020d",
+    text: getContrastYIQ("#08020d"),
+    primary: "#332920", // Simplified single color
+    secondary: "#1E1410", // Simplified single color
+    accent: "#8C6A4F", // Simplified single color
+    success: "#3C7266",
+    black:"#2E2A27",
+    white:"#989898",
+    danger: "#f44336",
+    warning: "#ffeb3b",
+    info: "#2196f3",
     // Additional colors
     link: "#1e90ff", // Link color in dark mode
     border: "#444444", // Darker border color

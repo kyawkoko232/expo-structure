@@ -82,7 +82,7 @@ const Login = () => {
           control={control}
           name="email"
           label="Email Address"
-          placeholder="kyawkyaw@gmail.com"
+          placeholder="hello@gmail.com"
           inputMode="email"
           errorMessage={errors.email?.message}
           borderColor={currentTheme.colors.border} // Pass the border color from theme
