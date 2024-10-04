@@ -27,7 +27,6 @@ type FormFields = z.infer<typeof formSchema>;
 const Login = () => {
   const { t } = useTranslation();
   const { currentTheme } = useTheme();
-
   const { signIn, session, isLoading } = useSession();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +42,7 @@ const Login = () => {
 
   useEffect(() => {
     if (session) {
-      router.replace("/(protected)/");
+      router.replace("/(protected)/coffee/(home)/");
     }
   }, [session, router]);
 
@@ -59,84 +58,81 @@ const Login = () => {
     }
   };
 
-  if (isLoading || loading) {
-    return (
-      <ActivityIndicator
-        size="large"
-        color={currentTheme.colors.primary}
-        style={styles.spinner}
-      />
-    );
-  }
-
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: currentTheme.colors.background },
-        ]}
-      >
-        <HookFormInput
-          control={control}
-          name="email"
-          label="Email Address"
-          placeholder="hello@gmail.com"
-          inputMode="email"
-          errorMessage={errors.email?.message}
-          textColor={currentTheme.colors.text} // Optional: if you want to set text color
-          placeholderColor={currentTheme.colors.placeholder} // Optional: if you want to set placeholder color
+      {isLoading || loading ? (
+        <ActivityIndicator
+          size="large"
+          color={currentTheme.colors.primary}
+          style={styles.spinner}
         />
-
-        <HookFormInput
-          control={control}
-          name="password"
-          label="Password"
-          placeholder="Enter your password"
-          inputMode="password"
-          errorMessage={errors.password?.message}
-          textColor={currentTheme.colors.text} // Optional
-          placeholderColor={currentTheme.colors.placeholder} // Optional
-        />
-
-        {errorMessage && (
-          <Text
-            style={[styles.errorText, { color: currentTheme.colors.danger }]}
-          >
-            {errorMessage}
-          </Text>
-        )}
-
-        <TouchableOpacity
-          onPress={handleSubmit(onSubmit)}
+      ) : (
+        <View
           style={[
-            styles.loginButton,
-            { backgroundColor: currentTheme.colors.secondary },
+            styles.container,
+            { backgroundColor: currentTheme.colors.background },
           ]}
         >
-          <Text
+          <HookFormInput
+            control={control}
+            name="email"
+            label="Email Address"
+            placeholder="hello@gmail.com"
+            inputMode="email"
+            errorMessage={errors.email?.message}
+            textColor={currentTheme.colors.text}
+            placeholderColor={currentTheme.colors.placeholder}
+          />
+
+          <HookFormInput
+            control={control}
+            name="password"
+            label="Password"
+            placeholder="Enter your password"
+            inputMode="password"
+            errorMessage={errors.password?.message}
+            textColor={currentTheme.colors.text}
+            placeholderColor={currentTheme.colors.placeholder}
+          />
+
+          {errorMessage && (
+            <Text
+              style={[styles.errorText, { color: currentTheme.colors.danger }]}
+            >
+              {errorMessage}
+            </Text>
+          )}
+
+          <TouchableOpacity
+            onPress={handleSubmit(onSubmit)}
             style={[
-              styles.buttonText,
-              { color: currentTheme.colors.background },
+              styles.loginButton,
+              { backgroundColor: currentTheme.colors.secondary },
             ]}
           >
-            {t("auth.login")}
-          </Text>
-        </TouchableOpacity>
-
-        {/* Text link for registration */}
-        <TouchableOpacity
-          onPress={() => router.push("/(auth)/register")}
-          style={styles.registerLink}
-        >
-          <Text style={{ color: currentTheme.colors.text }}>
-            Don't have an account?{" "}
-            <Text style={{ color: currentTheme.colors.primary }}>
-              Register
+            <Text
+              style={[
+                styles.buttonText,
+                { color: currentTheme.colors.background },
+              ]}
+            >
+              {t("auth.login")}
             </Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => router.push("/(auth)/register")}
+            style={styles.registerLink}
+          >
+            <Text style={{ color: currentTheme.colors.text }}>
+              Don't have an account?{" "}
+              <Text style={{ color: currentTheme.colors.primary }}>
+                Register
+              </Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -158,7 +154,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
   },
   buttonText: {
     fontSize: 16,

@@ -22,6 +22,7 @@ import { createBox, createText } from "@shopify/restyle";
 import { Theme } from "@/theme/theme";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import useAuth from "@/helpers/useAuth";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -29,6 +30,7 @@ const { width, height } = Dimensions.get("window");
 
 const HomePage = () => {
   const { currentTheme } = useTheme();
+  const { session, handleSignOut } = useAuth();
   const color = currentTheme.colors;
   const Text = createText<Theme>();
   const Box = createBox<Theme>();
@@ -84,7 +86,12 @@ const HomePage = () => {
       }}
     >
       {/* Nav Bar */}
-      <View style={[styles.navContainer, {backgroundColor: currentTheme.colors.background}]}>
+      <View
+        style={[
+          styles.navContainer,
+          { backgroundColor: currentTheme.colors.background },
+        ]}
+      >
         <Pressable onPress={onPressToTop}>
           <Image
             style={styles.image}
@@ -115,48 +122,67 @@ const HomePage = () => {
             />
           </View>
 
-         <View style={{marginHorizontal:5}}>
-         <Box backgroundColor="primary" style={styles.top2Container}>
-            <Text style={{ color: color.background, fontSize: 20 }}>
-              Join the Rewards program to enjoy free beverages, special offers
-              and more!
-            </Text>
+          {!session ? (
+            <View style={{ marginHorizontal: 5 }}>
+              <Box backgroundColor="primary" style={styles.top2Container}>
+                <Text style={{ color: color.background, fontSize: 20 }}>
+                  Join the Rewards program to enjoy free beverages, special
+                  offers and more!
+                </Text>
 
-            <View style={styles.buttonContainer}>
-              <Pressable
-                style={[styles.button, { backgroundColor: color.secondary }]}
+                <View style={styles.buttonContainer}>
+                  <Pressable
+                    style={[
+                      styles.button,
+                      { backgroundColor: color.secondary },
+                    ]}
+                  >
+                    <Text
+                      style={{ color: color.background, fontWeight: "500" }}
+                    >
+                      JOIN NOW
+                    </Text>
+                  </Pressable>
+                  <Pressable
+                    style={[
+                      styles.button,
+                      { backgroundColor: color.background },
+                    ]}
+                  >
+                    <Text style={{ color: color.text, fontWeight: "500" }}>
+                      GUEST ORDER
+                    </Text>
+                  </Pressable>
+                </View>
+              </Box>
+              <View
+                style={[
+                  styles.top3Container,
+                  { backgroundColor: color.background },
+                ]}
               >
-                <Text style={{ color: color.background, fontWeight: "500" }}>
-                  JOIN NOW
-                </Text>
-              </Pressable>
-              <Pressable
-                style={[styles.button, { backgroundColor: color.background }]}
-              >
-                <Text style={{ color: color.text, fontWeight: "500" }}>
-                  GUEST ORDER
-                </Text>
-              </Pressable>
+                <Pressable>
+                  <Text
+                    style={{
+                      color: color.text,
+                      fontSize: 17,
+                      fontWeight: "500",
+                    }}
+                  >
+                    Already have an account?
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={styles.loginBtn}
+                  onPress={() => router.navigate("/(auth)/login")}
+                >
+                  <Text style={[styles.text, { color: color.primary }]}>
+                    Login
+                  </Text>
+                </Pressable>
+              </View>
             </View>
-          </Box>
-          <View
-            style={[styles.top3Container, { backgroundColor: color.background }]}
-          >
-            <Pressable>
-              <Text
-                style={{ color: color.text, fontSize: 17, fontWeight: "500" }}
-              >
-                Already have an account?
-              </Text>
-            </Pressable>
-            <Pressable
-              style={styles.loginBtn}
-              onPress={() => router.navigate("/(auth)/login")}
-            >
-              <Text style={[styles.text, { color: color.primary }]}>Login</Text>
-            </Pressable>
-          </View>
-         </View>
+          ) : null}
 
           <View>
             <Title
@@ -225,12 +251,14 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     gap: 10,
     marginTop: 15,
   },
 
   button: {
-    width: width / 2.5,
+    width: width / 3,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 13,
