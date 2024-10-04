@@ -58,7 +58,7 @@ const HomePage = () => {
 
   const saveProductToRedux = (id: string, name: string) => {
     router.push({
-      pathname: "/(protected)/coffee/(home)/detail",
+      pathname: "/coffee/detail",
       params: { id, name }, // Data passed as query parameters
     });
   };
@@ -84,8 +84,7 @@ const HomePage = () => {
       }}
     >
       {/* Nav Bar */}
-      <View style={[styles.navContainer, { backgroundColor: color.background }]}>
-        <StatusBar style="dark" />
+      <View style={[styles.navContainer,{ backgroundColor: color.accent }]}>
         <Pressable onPress={onPressToTop}>
           <Image
             style={styles.image}
@@ -193,13 +192,12 @@ const styles = StyleSheet.create({
   navContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 20,
+    marginBottom: 2,
     alignItems: "center",
-    borderRadius: 5,
     shadowOffset: { width: 0, height: 4 }, // Adjust height for deeper shadow
     shadowOpacity: 0.4, // Reduce opacity for a softer shadow
     shadowRadius: 5, // Slightly larger radius for a smoother effect
-    elevation: 5, // For Android shadow
+    elevation: 3, // For Android shadow
     padding: 15,
     shadowColor: "accent",
   },
@@ -238,6 +236,7 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     borderRadius: 20,
   },
+
   top3Container: {
     paddingHorizontal: 18,
     paddingVertical: 20,

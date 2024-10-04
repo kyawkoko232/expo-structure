@@ -43,3 +43,5 @@ npx expo install @expo-google-fonts/padauk
 ```bash
 npx json-server --watch data/db.json --host 192.168.1.116 --port 8000 -s data/coffee
 ```
+
+android မှာ screen အဖြူ flash ဖြစ်နေတာက root layout မှာအရောင်သေချာမချခဲ့လို့။ 

@@ -52,6 +52,9 @@ const ProtectedRouteLayout = () => {
         headerStyle: {
           backgroundColor: currentTheme.colors.background, // Background color from the current theme
         },
+        contentStyle: {
+          backgroundColor: currentTheme.colors.background,
+        },
         headerTintColor: currentTheme.colors.text, // Color for the header text and back button
         headerLeft: () => (
           <TouchableOpacity

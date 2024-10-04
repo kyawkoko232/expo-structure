@@ -6,10 +6,13 @@ import { ThemedText } from "@/components/ThemedText";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Redirect, Tabs } from "expo-router";
+import { useTheme } from "@/context/ThemeContext";
+import { border } from "@shopify/restyle";
 
 export default function TabLayout() {
   const { session, isLoading } = useSession();
   const colorScheme = useColorScheme();
+  const {currentTheme} = useTheme();
 
   if (isLoading) {
     return (
@@ -30,8 +33,16 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: currentTheme.colors.secondary,
+        tabBarInactiveTintColor: "gray",
         headerShown: false,
+  
+        tabBarStyle: { 
+          borderTopColor: currentTheme.colors.border, 
+          backgroundColor: currentTheme.colors.background // Set background color here
+        
+        }
+        
       }}
     >
       <Tabs.Screen

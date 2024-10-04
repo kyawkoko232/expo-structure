@@ -24,22 +24,22 @@ export const textVariants = {
   },
   titleB: {
     color: "text",
-    fontSize: 20,
+    fontSize: 22,
     fontFamily: "poppins",
     fontWeight: "500", // Fallback to Padauk
   },
   defaults: {
     color: "text",
     fontSize: 16,
-     fontFamily: "poppins", 
+    fontFamily: "poppins",
   },
-  
+
   textA: {
     fontSize: 18,
     color: "text",
-     fontFamily: "poppins",
-    fontWeight: "400", 
-    marginTop: "sm",
+    fontFamily: "poppins",
+    fontWeight: "400",
+    marginTop: "md",
     lineHeight: 22,
     opacity: 0.7,
   },
@@ -48,6 +48,6 @@ export const textVariants = {
     color: "success",
     fontFamily: "poppins",
     fontSize: 15,
-    fontWeight: "500", 
+    fontWeight: "500",
   },
 };

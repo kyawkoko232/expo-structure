@@ -78,7 +78,8 @@ const DetailScreen = () => {
 
   const renderContent = () => (
     <>
-      <Text variant="titleB" color="black">
+
+      <Text variant="title" color="text">
         Cappuccino
       </Text>
       <View style={{ flexDirection: "row" }}>
@@ -95,10 +96,12 @@ const DetailScreen = () => {
       </View>
 
       <View style={styles.containerTwo}>
-        <Text variant="titleB" color="black">
+
+        <Text variant="title" color="text">
+
           Description
         </Text>
-        <Text variant="textA" color="black" marginTop="sm">
+        <Text variant="textA" color="text" marginTop="sm">
           A cappuccino is a beloved espresso-based hot coffee drink made with
           layering of espresso, steamed milk, and milk foam on top.
         </Text>
@@ -115,7 +118,9 @@ const DetailScreen = () => {
       </View>
       <View style={{ flexDirection: "row", gap: 10 }}>
         <View style={styles.dropDownContainer}>
-          <Text variant="titleB" color="black">
+
+          <Text variant="title" color="text">
+
             Cup Size
           </Text>
           <DropDownPicker
@@ -133,7 +138,7 @@ const DetailScreen = () => {
           />
         </View>
         <View style={styles.dropDownContainer}>
-          <Text variant="titleB" color="black">
+          <Text variant="title" color="text">
             Sugar
           </Text>
           <DropDownPicker
@@ -156,7 +161,7 @@ const DetailScreen = () => {
 
   return (
     <SafeAreaView
-      style={{ minHeight: height, backgroundColor: color.secondary }}
+      style={{ minHeight: height, backgroundColor: color.background }}
     >
       {/* For Stack Screen Top */}
       <Stack.Screen

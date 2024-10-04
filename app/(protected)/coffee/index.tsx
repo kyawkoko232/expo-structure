@@ -3,8 +3,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import OnBoardingScreen from "@/screen/onboarding/onboardingScreen";
 import { Redirect } from "expo-router";
 import { ActivityIndicator, View } from "react-native";
+import { useTheme } from "@/context/ThemeContext";
+
 
 export default function Root() {
+  const {currentTheme} = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [onboardingShown, setOnboardingShown] = useState(false);
 
@@ -26,14 +29,14 @@ export default function Root() {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      {isLoading ? (
+    isLoading ? (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" ,backgroundColor: currentTheme.colors.background }}>
         <ActivityIndicator size="large" color="#0000ff" />
-      ) : onboardingShown ? (
-        <Redirect href="/(protected)/coffee/(tabs)" />
-      ) : (
-        <OnBoardingScreen />
-      )}
-    </View>
+      </View>
+    ) : onboardingShown ? (
+      <Redirect href="/(protected)/coffee/(tabs)" />
+    ) : (
+      <OnBoardingScreen />
+    )
   );
 }

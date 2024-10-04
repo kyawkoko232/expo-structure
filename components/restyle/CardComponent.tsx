@@ -18,23 +18,27 @@ const Card: React.FC<CardProps> = ({ title, content, footer }) => {
 
   return (
     <Box
-      backgroundColor="background" // Use the background color from the theme
+      backgroundColor="accent" // Use the background color from the theme
       borderRadius="md" // Use the responsive key for borderRadius
       padding="md" // Use the responsive key for padding
       marginVertical="sm" // Use the responsive key for margin
-      shadowColor="black"
-      shadowOpacity={0.1}
-      shadowRadius={4}
-      elevation={2} // For Android shadow
+      shadowColor="text"
+      shadowOpacity={0.1} // Increased shadow opacity for a more prominent shadow
+      shadowRadius={10} // Increased shadow radius for a softer shadow
+      elevation={5} // Increased elevation for Android shadow
     >
-      <TextStyled variant="titleB" style={{ color: theme.colors.text }}>
+
+      <TextStyled variant="title" color="text">
         {title}
       </TextStyled>
-      <TextStyled variant="secondary" style={{ color: theme.colors.text }}>
+      <TextStyled variant="secondary" color="text">
         {content}
       </TextStyled>
       {footer && (
-        <TextStyled variant="secondary" style={{ color: theme.colors.secondary }}>
+        <TextStyled
+          variant="secondary"
+          color="text"
+        >
           {footer}
         </TextStyled>
       )}

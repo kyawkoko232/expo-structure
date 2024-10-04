@@ -7,6 +7,7 @@ import { cardVariants } from './cardVariants';
 
 // Create themes
 const lightTheme = createTheme({
+  name : "light",
   colors: {
     ...palette.light,
     primary: palette.light.primary, 
@@ -25,6 +26,7 @@ const lightTheme = createTheme({
 });
 
 const darkTheme = createTheme({
+  name : "dark",
   colors: {
     ...palette.dark,
     primary: palette.dark.primary,
@@ -46,6 +48,7 @@ const darkTheme = createTheme({
 
 
 const coffeeTheme = createTheme({
+  name : "coffee",
   colors: {
     ...palette.coffee,
     primary: palette.coffee.primary,
