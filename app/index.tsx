@@ -72,7 +72,7 @@ const Index = () => {
             <Text
               style={{
                 ...textVariants.default,
-                color: currentTheme.colors.text,
+                color: currentTheme.colors.textOpposite,
               }}
             >
               {t("auth.signOut")}
@@ -94,7 +94,7 @@ const Index = () => {
         onPress={() => router.push("/routes")}
       >
         <Text
-          style={{ ...textVariants.default, color: currentTheme.colors.text }}
+          style={{ ...textVariants.default, color: currentTheme.colors.textOpposite }}
         >
           {t("allRoutes")}
         </Text>
@@ -115,7 +115,7 @@ const Index = () => {
         <Text
           style={{
             ...textVariants.default,
-            color: currentTheme.colors.text,
+            color: currentTheme.colors.textOpposite,
           }}
         >
           {t("settings")}

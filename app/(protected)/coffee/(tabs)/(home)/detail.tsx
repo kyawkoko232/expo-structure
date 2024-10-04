@@ -2,6 +2,7 @@ import {
   Dimensions,
   FlatList,
   Pressable,
+  ScrollView,
   StyleSheet,
   View,
 } from "react-native";
@@ -18,8 +19,6 @@ import { coffeeCategories, radio, sizes, sugar } from "@/data";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateCart } from "@/providers/redux/slices/cartSlice";
-
-
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -41,19 +40,15 @@ const DetailScreen = () => {
   const [selectedId, setSelectedId] = useState<string | undefined>();
   const radioButtons = useMemo(() => radio, []);
 
- 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState(sizes);
 
-  
   const [sugarOpen, setSugarOpen] = useState(false);
   const [sugarPercent, setSugarPercent] = useState(null);
   const [sugarItems, setSugarItems] = useState(sugar);
 
-  
   const [quantity, setQuantity] = useState(1); // Initial quantity set to 1
-
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () => {
@@ -78,7 +73,6 @@ const DetailScreen = () => {
 
   const renderContent = () => (
     <>
-
       <Text variant="title" color="text">
         Cappuccino
       </Text>
@@ -96,9 +90,7 @@ const DetailScreen = () => {
       </View>
 
       <View style={styles.containerTwo}>
-
         <Text variant="title" color="text">
-
           Description
         </Text>
         <Text variant="textA" color="text" marginTop="sm">
@@ -118,9 +110,7 @@ const DetailScreen = () => {
       </View>
       <View style={{ flexDirection: "row", gap: 10 }}>
         <View style={styles.dropDownContainer}>
-
           <Text variant="title" color="text">
-
             Cup Size
           </Text>
           <DropDownPicker
@@ -161,14 +151,14 @@ const DetailScreen = () => {
 
   return (
     <SafeAreaView
-      style={{ minHeight: height, backgroundColor: color.background }}
+      style={{ minHeight: height, backgroundColor: color.background, flex: 1 }}
     >
       {/* For Stack Screen Top */}
       <Stack.Screen
         options={{
           headerTitle: "Detail",
           headerTintColor: "black",
-          headerStyle: { backgroundColor: color.secondary },
+          headerStyle: { backgroundColor: color.background },
           headerBackTitleVisible: false,
           headerRight: () => (
             <Pressable onPress={() => router.navigate("/coffee/order")}>
@@ -177,6 +167,7 @@ const DetailScreen = () => {
           ),
         }}
       />
+
       <View style={styles.ImageContainer}>
         <Image
           source={image} // Use the image passed via params
@@ -193,14 +184,18 @@ const DetailScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 30 }}
       />
-      {/* Add to cart and Buy Now buttons */}
-      <View style={styles.btnContainer}>
-        <Pressable style={styles.button}>
-          <Text style={styles.btnText}>ADD TO CART</Text>
-        </Pressable>
-        <Pressable style={[styles.button, { backgroundColor: "black" }]}>
-          <Text style={[styles.btnText, { color: "white" }]}>BUY NOW</Text>
-        </Pressable>
+      <View style={{ flex: 1 }}>
+        <ScrollView>
+          {/* Add to cart and Buy Now buttons */}
+          <View style={styles.btnContainer}>
+            <Pressable style={styles.button}>
+              <Text style={styles.btnText}>ADD TO CART</Text>
+            </Pressable>
+            <Pressable style={[styles.button, { backgroundColor: "black" }]}>
+              <Text style={[styles.btnText, { color: "white" }]}>BUY NOW</Text>
+            </Pressable>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -286,7 +281,7 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: "row",
-    position: "absolute",
+    marginTop: 50,
     bottom: 10,
     width: "100%",
     justifyContent: "center",

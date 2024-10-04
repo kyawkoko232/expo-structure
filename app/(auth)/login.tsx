@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import {
   StyleSheet,
@@ -15,6 +14,7 @@ import { useSession } from "@/providers/SessionProvider";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/context/ThemeContext";
+import { useRouter } from "expo-router";
 
 // Zod schema for validation
 const formSchema = z.object({
@@ -27,7 +27,6 @@ type FormFields = z.infer<typeof formSchema>;
 const Login = () => {
   const { t } = useTranslation();
   const { currentTheme } = useTheme();
-
   const { signIn, session, isLoading } = useSession();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +42,7 @@ const Login = () => {
 
   useEffect(() => {
     if (session) {
-      router.replace("/(protected)/");
+      router.replace("/(protected)/coffee/(home)/");
     }
   }, [session, router]);
 
@@ -59,72 +58,81 @@ const Login = () => {
     }
   };
 
-  if (isLoading || loading) {
-    return (
-      <ActivityIndicator
-        size="large"
-        color={currentTheme.colors.primary}
-        style={styles.spinner}
-      />
-    );
-  }
-
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: currentTheme.colors.background },
-        ]}
-      >
-        <Link href={"/"}>Go To Main Root ("/")</Link>
-        <HookFormInput
-          control={control}
-          name="email"
-          label="Email Address"
-          placeholder="hello@gmail.com"
-          inputMode="email"
-          errorMessage={errors.email?.message}
-          borderColor={currentTheme.colors.border} // Pass the border color from theme
-          textColor={currentTheme.colors.text} // Optional: if you want to set text color
-          placeholderColor={currentTheme.colors.placeholder} // Optional: if you want to set placeholder color
+      {isLoading || loading ? (
+        <ActivityIndicator
+          size="large"
+          color={currentTheme.colors.primary}
+          style={styles.spinner}
         />
-
-        <HookFormInput
-          control={control}
-          name="password"
-          label="Password"
-          placeholder="Enter your password"
-          inputMode="password"
-          errorMessage={errors.password?.message}
-          borderColor={currentTheme.colors.border} // Pass the border color from theme
-          textColor={currentTheme.colors.text} // Optional
-          placeholderColor={currentTheme.colors.placeholder} // Optional
-        />
-        {errorMessage && (
-          <Text
-            style={[styles.errorText, { color: currentTheme.colors.danger }]}
-          >
-            {errorMessage}
-          </Text>
-        )}
-        <TouchableOpacity
+      ) : (
+        <View
           style={[
-            styles.loginButton,
-            { backgroundColor: currentTheme.colors.primary },
+            styles.container,
+            { backgroundColor: currentTheme.colors.background },
           ]}
-          onPress={handleSubmit(onSubmit)}
         >
-          <Text
+          <HookFormInput
+            control={control}
+            name="email"
+            label="Email Address"
+            placeholder="hello@gmail.com"
+            inputMode="email"
+            errorMessage={errors.email?.message}
+            textColor={currentTheme.colors.text}
+            placeholderColor={currentTheme.colors.placeholder}
+          />
+
+          <HookFormInput
+            control={control}
+            name="password"
+            label="Password"
+            placeholder="Enter your password"
+            inputMode="password"
+            errorMessage={errors.password?.message}
+            textColor={currentTheme.colors.text}
+            placeholderColor={currentTheme.colors.placeholder}
+          />
+
+          {errorMessage && (
+            <Text
+              style={[styles.errorText, { color: currentTheme.colors.danger }]}
+            >
+              {errorMessage}
+            </Text>
+          )}
+
+          <TouchableOpacity
+            onPress={handleSubmit(onSubmit)}
             style={[
-              styles.loginButtonText,
-              { color: currentTheme.colors.background },
+              styles.loginButton,
+              { backgroundColor: currentTheme.colors.secondary },
             ]}
           >
-            {t("auth.login")}
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={[
+                styles.buttonText,
+                { color: currentTheme.colors.background },
+              ]}
+            >
+              {t("auth.login")}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => router.push("/(auth)/register")}
+            style={styles.registerLink}
+          >
+            <Text style={{ color: currentTheme.colors.text }}>
+              Don't have an account?{" "}
+              <Text style={{ color: currentTheme.colors.primary }}>
+                Register
+              </Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -135,32 +143,30 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
-  loginButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    width: "100%",
-  },
-  loginButtonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
   container: {
     padding: 16,
     height: "100%",
   },
-  buttonContainer: {
-    marginTop: 40,
-    justifyContent: "center",
+  loginButton: {
+    marginTop: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 8,
     alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
   },
   errorText: {
     marginTop: 10,
   },
   spinner: {
     marginTop: 0,
+  },
+  registerLink: {
+    marginTop: 20,
+    alignItems: "center",
   },
 });

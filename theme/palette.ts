@@ -8,51 +8,66 @@ const getContrastYIQ = (hex) => {
 
 const palette = {
   light: {
-    background: "#f6f8fa",
-    text: getContrastYIQ("#f6f8fa"), // Contrast based on light GitHub background
-    primary: "#B8B3E9",
-    secondary: "#6f42c1",
-    accent: "#90E0F3",
+    background: "#F6F2ED",
+    text: getContrastYIQ("#F6F2ED"),
+    textOpposite: "#FFFFFF",
+    primary: "#8a2be2",
+    secondary: "#4a1e9e",
+    accent: "#a92be2",
+    support: "#2D57E2",
+    neutral: "#1F3D9E",
     success: "#28a745",
     danger: "#dc3545",
     warning: "#ffc107",
     info: "#17a2b8",
     disable: "#8F8E8E",
     // Additional colors
-    link: "#007bff", // Link color
-    border: "#d1d1d1", // Border color
-    placeholder: "#b0b0b0", // Placeholder color
-    muted: "#6c757d", // Muted text color
+    link: "#007bff", 
+    border: "#d1d1d1",
+    placeholder: "#b0b0b0", 
+    muted: "#6c757d", 
+    disable: "#c6c6c6",
   },
   dark: {
-    background: "#1e1e1e", // Darker background for dark mode
-    text: getContrastYIQ("#1e1e1e"), // Adjusted text contrast for dark background
-    primary: "#2d2d2d", // Darker primary color
-    secondary: "#9b59b6", // A more vibrant purple for better contrast
-    accent: "#1abc9c", // A slightly brighter green for accent
-    success: "#28a745", // Same green for success
-    danger: "#e74c3c", // A brighter red for danger
-    warning: "#f39c12", // Slightly muted yellow for warning
-    info: "#3498db", // Brighter blue for info
-    disable: "#8F8E8E",
-    // Additional colors
-    link: "#1e90ff", // Link color in dark mode
-    border: "#444444", // Darker border color
-    placeholder: "#a8a8a8", // Placeholder color in dark mode
-    muted: "#9e9e9e", // Muted text color in dark mode
-  },
-
-  coffee: {
-    background: "#F6F2ED", // Darker background for dark mode
-    text: "#272727", // Adjusted text contrast for dark background
-    primary: "#4E8D7C", // Darker primary color
-    secondary: "#4B2C20", // A more vibrant purple for better contrast
-    accent: "#FFFFFF", // A slightly brighter green for accent
-    success: "#28a745", // Same green for success
-    danger: "#e74c3c", // A brighter red for danger
-    warning: "#f39c12", // Slightly muted yellow for warning
+    background: "#090901",
+    text: getContrastYIQ("#090901"),
+    textOpposite: "#334155",
+    primary: "#d9cf0d",
+    secondary: "#2a7e07",
+    accent: "#1dbc0b",
+    support: "#005f6a",  // Darker blue tone
+    neutral: "#3f4453",  // Mid-tone neutral
+    success: "#28a745",
+    danger: "#e74c3c",
+    warning: "#f39c12",
     info: "#3498db",
-    disable: "#8F8E8E",
+
+    // Additional colors
+    link: "#1e90ff", 
+    border: "#444444", 
+    placeholder: "#a8a8a8", 
+    muted: "#9e9e9e", 
+    disable: "#666666",  // Dark grey for disabled elements
+  },
+  coffee: {
+    background: "#F6F2ED",
+    text: "#272727",
+    textOpposite: "#f1f5f9",
+    primary: "#4E8D7C",
+    secondary: "#4B2C20",
+    accent: "#FFFFFF",
+    support: "#B29D8B",  // Warm brown tone for support
+    neutral: "#7D5A50",  // Muted neutral tone
+    success: "#28a745",
+    danger: "#e74c3c",
+    warning: "#f39c12",
+    info: "#3498db",
+    // Additional colors
+    link: "#C49A6C",   // Light brown for links
+    border: "#a0978e", // Light coffee tone for borders
+    placeholder: "#b3a39d",  // Subtle coffee tone for placeholders
+    muted: "#84746B",  // Soft brownish grey for muted text
+    disable: "#8F8E8E", // Grey for disabled elements
   },
 };
 

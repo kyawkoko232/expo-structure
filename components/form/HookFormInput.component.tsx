@@ -1,3 +1,4 @@
+import { textVariants } from "@/theme/textVariants";
 import { useTheme } from "@shopify/restyle";
 import React from "react";
 import { Controller } from "react-hook-form";
@@ -10,7 +11,6 @@ interface HookFormInputProps {
   placeholder?: string;
   inputMode?: "text" | "email" | "password"; // Define input modes as needed
   errorMessage?: string;
-  borderColor?: string; // New prop for border color
   textColor?: string; // New prop for text color
   placeholderColor?: string; // New prop for placeholder color
 }
@@ -22,7 +22,6 @@ const HookFormInput: React.FC<HookFormInputProps> = ({
   placeholder,
   inputMode = "text",
   errorMessage,
-  borderColor,
   textColor,
   placeholderColor,
 }) => {
@@ -30,7 +29,7 @@ const HookFormInput: React.FC<HookFormInputProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.label, { color: theme.colors.text }]}>{label}</Text>
+      <Text style={[styles.label, { color: theme.colors.primary }]}>{label}</Text>
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -38,7 +37,7 @@ const HookFormInput: React.FC<HookFormInputProps> = ({
             style={[
               styles.input,
               {
-                borderColor: borderColor || theme.colors.border, // Use border color prop or fallback to theme
+                ...textVariants.default,
                 color: textColor || theme.colors.text, // Use text color prop or fallback to theme
               },
             ]}
@@ -52,10 +51,10 @@ const HookFormInput: React.FC<HookFormInputProps> = ({
           />
         )}
         name={name}
-        rules={{ required: true }} // You can customize this as per your validation rules
+        rules={{ required: true }} // Customize as per your validation rules
       />
       {errorMessage && (
-        <Text style={[styles.errorText, { color: theme.colors.danger }]}>
+        <Text style={[styles.errorText , { color: theme.colors.danger }]}>
           {errorMessage}
         </Text>
       )}
@@ -70,15 +69,24 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 4,
+    fontFamily : "poppins",
   },
   input: {
     height: 40,
-    borderWidth: 1,
+    backgroundColor: "#fff", // Ensure background color for shadow contrast
     borderRadius: 8,
     paddingHorizontal: 8,
+    // Shadow for iOS
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    // Shadow for Android
+    elevation: 4,
   },
   errorText: {
     marginTop: 4,
+    fontFamily : "poppins",
   },
 });
 
