@@ -55,7 +55,7 @@ export default function Account() {
     <SafeAreaView
       style={{
         minHeight: height,
-        backgroundColor: color.background,
+        backgroundColor: modalVisible ? color.disable : color.background,
         paddingHorizontal: 20,
       }}
     >
@@ -77,90 +77,54 @@ export default function Account() {
         showsVerticalScrollIndicator={false}
         style={{ paddingHorizontal: 25, marginTop: 15 }}
       >
-        {/* profile */}
-        <View>
-          <Text variant="titleB">Profile</Text>
-          <View style={{ marginVertical: 10, gap: 10 }}>
-            <Pressable
-              style={styles.container}
-              onPress={() => {
-                // router.push("/(auth)/login");
-              }}
-            >
-              <Text variant="textA">Personal Info</Text>
-              <Ionicons
-                name="information-circle-outline"
-                size={24}
-                color="black"
-              />
-            </Pressable>
-
-            <Pressable
-              style={styles.container}
-              onPress={() => {
-                // router.push("/(auth)/login");
-              }}
-            >
-              <Text variant="textA">Cards & Payments</Text>
-              <Ionicons name="card-outline" size={24} color="black" />
-            </Pressable>
-
-            <Pressable
-              style={styles.container}
-              onPress={() => {
-                // router.push("/(auth)/login");
-              }}
-            >
-              <Text variant="textA">Transaction History</Text>
-              <Ionicons name="options-outline" size={24} color="black" />
-            </Pressable>
-
-            <Pressable
-              style={styles.container}
-              onPress={() => {
-                // router.push("/(auth)/login");
-              }}
-            >
-              <Text variant="textA">Privacy & Data</Text>
-              <Ionicons name="hand-left-outline" size={24} color="black" />
-            </Pressable>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Text variant="textA">Account ID</Text>
-            <Pressable>
-              <Ionicons name="id-card-outline" size={24} color="black" />
-            </Pressable>
-          </View>
-        </View>
-        {/* Security */}
-        <View style={{ marginTop: 10 }}>
-          <Text variant="titleB">Security</Text>
-          <View style={{ marginVertical: 10, gap: 10 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text variant="textA">2-factor authentication</Text>
-              <Switch
-                trackColor={{
-                  false: currentTheme.colors.disable,
-                  true: currentTheme.colors.success,
+        <View style={{ gap: 15 }}>
+          {/* profile */}
+          <View>
+            <Text variant="titleB">Profile</Text>
+            <View style={{ marginVertical: 10, gap: 3 }}>
+              <Pressable
+                style={styles.container}
+                onPress={() => {
+                  // router.push("/(auth)/login");
                 }}
-                thumbColor={currentTheme.colors.accent}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggle2Factor}
-                value={is2FactorEnabled}
-              />
+              >
+                <Text variant="textA">Personal Info</Text>
+                <Ionicons
+                  name="information-circle-outline"
+                  size={24}
+                  color="black"
+                />
+              </Pressable>
+
+              <Pressable
+                style={styles.container}
+                onPress={() => {
+                  // router.push("/(auth)/login");
+                }}
+              >
+                <Text variant="textA">Cards & Payments</Text>
+                <Ionicons name="card-outline" size={24} color="black" />
+              </Pressable>
+
+              <Pressable
+                style={styles.container}
+                onPress={() => {
+                  // router.push("/(auth)/login");
+                }}
+              >
+                <Text variant="textA">Transaction History</Text>
+                <Ionicons name="options-outline" size={24} color="black" />
+              </Pressable>
+
+              <Pressable
+                style={styles.container}
+                onPress={() => {
+                  // router.push("/(auth)/login");
+                }}
+              >
+                <Text variant="textA">Privacy & Data</Text>
+                <Ionicons name="hand-left-outline" size={24} color="black" />
+              </Pressable>
             </View>
 
             <View
@@ -170,80 +134,129 @@ export default function Account() {
                 alignItems: "center",
               }}
             >
-              <Text variant="textA">Face ID</Text>
-              <Switch
-                trackColor={{
-                  false: currentTheme.colors.disable,
-                  true: currentTheme.colors.success,
-                }}
-                thumbColor={currentTheme.colors.accent}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleFaceID}
-                value={isFaceIDEnabled}
-              />
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text variant="textA">Passcode Lock</Text>
-              <Switch
-                trackColor={{
-                  false: currentTheme.colors.disable,
-                  true: currentTheme.colors.success,
-                }}
-                thumbColor={currentTheme.colors.accent}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={togglePasscode}
-                value={isPasscodeEnabled}
-              />
+              <Text variant="textA">Account ID</Text>
+              <Pressable>
+                <Ionicons name="id-card-outline" size={24} color="black" />
+              </Pressable>
             </View>
           </View>
-        </View>
+          {/* Security */}
+          <View>
+            <Text variant="titleB">Security</Text>
+            <View style={{ marginVertical: 10, gap: 3 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text variant="textA">2-factor authentication</Text>
+                <Switch
+                  trackColor={{
+                    false: currentTheme.colors.disable,
+                    true: currentTheme.colors.success,
+                  }}
+                  thumbColor={currentTheme.colors.accent}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggle2Factor}
+                  value={is2FactorEnabled}
+                />
+              </View>
 
-        <View style={{ marginTop: 20 }}>
-          <Text variant="titleB">Notification Preferences</Text>
-          <View style={{ marginVertical: 10, gap: 10 }}></View>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => setModalVisible(!modalVisible)}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                {getThemeKeys().map((themeKey) => (
-                  <TouchableOpacity
-                    key={themeKey}
-                    style={[
-                      styles.button,
-                      currentTheme.name === themeKey && styles.buttonSelected,
-                    ]}
-                    onPress={() => {
-                      changeTheme(themeKey);
-                      setModalVisible(false);
-                    }}
-                  >
-                    <Text style={styles.textStyle}>
-                      {themeKey.charAt(0).toUpperCase() + themeKey.slice(1)}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text variant="textA">Face ID</Text>
+                <Switch
+                  trackColor={{
+                    false: currentTheme.colors.disable,
+                    true: currentTheme.colors.success,
+                  }}
+                  thumbColor={currentTheme.colors.accent}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleFaceID}
+                  value={isFaceIDEnabled}
+                />
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text variant="textA">Passcode Lock</Text>
+                <Switch
+                  trackColor={{
+                    false: currentTheme.colors.disable,
+                    true: currentTheme.colors.success,
+                  }}
+                  thumbColor={currentTheme.colors.accent}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={togglePasscode}
+                  value={isPasscodeEnabled}
+                />
               </View>
             </View>
-          </Modal>
-          <Pressable onPress={() => setModalVisible(true)}>
-            <Text variant="textA">Themes</Text>
-            {/* Update Text to reflect current theme */}
-            <Text variant="paragraph">
-              {currentTheme.name.charAt(0).toUpperCase() +
-                currentTheme.name.slice(1)}
-            </Text>
-          </Pressable>
+          </View>
+
+          <View>
+            <Text variant="titleB">Notification Preferences</Text>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => setModalVisible(!modalVisible)}
+            >
+              <View style={styles.centeredView}>
+                <View
+                  style={[
+                    styles.modalView,
+                    { backgroundColor: currentTheme.colors.background },
+                  ]}
+                >
+                  {getThemeKeys().map((themeKey) => (
+                    <TouchableOpacity
+                      key={themeKey}
+                      style={[
+                        styles.button,
+                        currentTheme.name === themeKey && {
+                          backgroundColor: currentTheme.colors.background,
+                        },
+                      ]}
+                      onPress={() => {
+                        changeTheme(themeKey);
+                        setModalVisible(false);
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.textStyle,
+                          { color: currentTheme.colors.text },
+                        ]}
+                      >
+                        {themeKey.charAt(0).toUpperCase() + themeKey.slice(1)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
+            </Modal>
+            <Pressable onPress={() => setModalVisible(true)}>
+              <Text variant="textA">Themes</Text>
+              {/* Update Text to reflect current theme */}
+              <Text variant="paragraph">
+                {currentTheme.name.charAt(0).toUpperCase() +
+                  currentTheme.name.slice(1)}
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -274,10 +287,8 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
+    borderRadius: 10,
+    // paddingHorizontal: 40,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -289,26 +300,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
+    paddingHorizontal: 60,
+    paddingVertical: 10,
     elevation: 2,
-    backgroundColor: "#2196F3",
-    marginVertical: 5,
   },
-  buttonSelected: {
-    backgroundColor: "#FF5722", // Different color to indicate selected theme
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
+
   textStyle: {
-    color: "white",
     fontWeight: "bold",
     textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-    fontSize: 18,
   },
 });

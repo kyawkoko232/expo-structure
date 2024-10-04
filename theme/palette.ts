@@ -26,7 +26,7 @@ const palette = {
     border: "#d1d1d1",
     placeholder: "#b0b0b0", 
     muted: "#6c757d", 
-    disable: "#c6c6c6",
+   
   },
   dark: {
     background: "#090901",
@@ -41,7 +41,7 @@ const palette = {
     danger: "#e74c3c",
     warning: "#f39c12",
     info: "#3498db",
-
+    disable: "#c6c6c6",
     // Additional colors
     link: "#1e90ff", 
     border: "#444444", 
