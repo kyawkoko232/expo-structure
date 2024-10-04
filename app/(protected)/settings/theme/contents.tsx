@@ -17,7 +17,7 @@ const TranslatedContent = () => {
         <Text
           style={[
             styles.title,
-            { fontFamily: currentTheme.textVariants.title.fontFamily },
+            { fontFamily: currentTheme.textVariants.titleB.fontFamily },
           ]}
         >
           {t("home.title")}

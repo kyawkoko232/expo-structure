@@ -73,12 +73,12 @@ const DetailScreen = () => {
         sugar: sugarPercent,
       })
     );
-    router.push("/order"); // Navigate to order page after adding to cart
+    router.push("/coffee/order"); // Navigate to order page after adding to cart
   };
 
   const renderContent = () => (
     <>
-      <Text variant="title" color="black">
+      <Text variant="titleB" color="black">
         Cappuccino
       </Text>
       <View style={{ flexDirection: "row" }}>
@@ -95,7 +95,7 @@ const DetailScreen = () => {
       </View>
 
       <View style={styles.containerTwo}>
-        <Text variant="title" color="black">
+        <Text variant="titleB" color="black">
           Description
         </Text>
         <Text variant="textA" color="black" marginTop="sm">
@@ -115,7 +115,7 @@ const DetailScreen = () => {
       </View>
       <View style={{ flexDirection: "row", gap: 10 }}>
         <View style={styles.dropDownContainer}>
-          <Text variant="title" color="black">
+          <Text variant="titleB" color="black">
             Cup Size
           </Text>
           <DropDownPicker
@@ -133,7 +133,7 @@ const DetailScreen = () => {
           />
         </View>
         <View style={styles.dropDownContainer}>
-          <Text variant="title" color="black">
+          <Text variant="titleB" color="black">
             Sugar
           </Text>
           <DropDownPicker
@@ -166,7 +166,7 @@ const DetailScreen = () => {
           headerStyle: { backgroundColor: color.secondary },
           headerBackTitleVisible: false,
           headerRight: () => (
-            <Pressable onPress={() => router.navigate("/order")}>
+            <Pressable onPress={() => router.navigate("/coffee/order")}>
               <Cart />
             </Pressable>
           ),

@@ -16,11 +16,17 @@ export const textVariants = {
     fontFamily: "padauk_regular", // Fallback to 'System'
   },
 
-  title: {
+  titleA: {
+    color: "text",
+    fontSize: 26,
+    fontFamily: "poppins",
+    fontWeight: "600", // Fallback to Padauk
+  },
+  titleB: {
     color: "text",
     fontSize: 20,
     fontFamily: "poppins",
-    fontWeight: "700", // Fallback to Padauk
+    fontWeight: "500", // Fallback to Padauk
   },
   defaults: {
     color: "text",
@@ -29,15 +35,15 @@ export const textVariants = {
   },
   
   textA: {
-    fontSize: 19,
+    fontSize: 18,
     color: "text",
      fontFamily: "poppins",
     fontWeight: "400", 
-    marginTop: "md",
+    marginTop: "sm",
     lineHeight: 22,
     opacity: 0.7,
   },
-
+ 
   link: {
     color: "success",
     fontFamily: "poppins",

@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({ title, content, footer }) => {
       shadowRadius={4}
       elevation={2} // For Android shadow
     >
-      <TextStyled variant="title" style={{ color: theme.colors.text }}>
+      <TextStyled variant="titleB" style={{ color: theme.colors.text }}>
         {title}
       </TextStyled>
       <TextStyled variant="secondary" style={{ color: theme.colors.text }}>

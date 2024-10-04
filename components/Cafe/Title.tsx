@@ -19,7 +19,7 @@ export default function Title({ title, action, onPressAction }: titleProps) {
   return (
     <View>
       <View style={styles.container}>
-        <Text variant="title" >
+        <Text variant="titleB" >
           {title}
         </Text>
         <Pressable onPress={onPressAction}>
