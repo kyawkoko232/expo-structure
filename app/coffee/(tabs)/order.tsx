@@ -1,10 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 import LottieView from "lottie-react-native";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Order() {
+  const {currentTheme }= useTheme()
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor:currentTheme.colors.background  }}>
       <LottieView
         autoPlay
         style={{

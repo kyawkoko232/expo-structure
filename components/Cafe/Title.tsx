@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginTop: 20,
     marginBottom: 10,
+    alignItems : 'center',
   },
   category: {
     fontSize: 20,

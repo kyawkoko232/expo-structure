@@ -9,7 +9,7 @@ const useAuth = () => {
   const handleSignOut = async () => {
     try {
       await signOut(); // Call the signOut method
-      router.replace("/"); // Redirect to login page after sign-out
+      router.replace("/coffee/(home)/"); // Redirect to login page after sign-out
     } catch (error: any) {
       console.error("Error during sign-out:", error);
 

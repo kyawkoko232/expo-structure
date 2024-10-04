@@ -1,3 +1,7 @@
-import { Slot } from "expo-router";
+import { Stack } from "expo-router";
 
-export default Slot
+export default function AccountLayout() {
+    return (
+        <Stack screenOptions={{ headerShown: false }} />
+    );
+}

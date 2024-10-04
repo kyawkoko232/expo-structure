@@ -7,7 +7,7 @@ export default function Cart() {
   const color = currentTheme.colors;
   return (
     <View style={{ flexDirection: "row" }}>
-      <Ionicons name="cart-outline" size={28} color={color.black} />
+      <Ionicons name="cart-outline" size={28} color={color.text} />
       <View style={styles.container}>
         <Text style={styles.budge}>13</Text>
       </View>

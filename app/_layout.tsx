@@ -22,15 +22,10 @@ SplashScreen.preventAutoHideAsync();
 const RootLayoutInner = () => {
   const { currentTheme } = useTheme(); // Access the current theme from ThemeContext
 
-  useEffect(() => {
-    // Any additional logic for RootLayoutInner can go here
-  }, [currentTheme]);
-
   return (
     <>
-      {/* Conditionally set the StatusBar style based on the theme */}
-     <View style={{ flex: 1, backgroundColor: currentTheme.colors.background }}>
-     <StatusBar style={currentTheme.name === "dark" ? "light" : "dark"} />
+    <View style={{ flex: 1, backgroundColor: currentTheme.colors.background }}>
+    <StatusBar style={currentTheme.name === "dark" ? "light" : "dark"} />
       <Stack screenOptions={{ 
         headerShown: false,
         contentStyle: {
@@ -65,6 +60,7 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
+      
       <LanguageProvider>
         {/* ThemeProvider should wrap the entire app */}
         <ThemeProvider>
