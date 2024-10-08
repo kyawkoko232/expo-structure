@@ -24,15 +24,19 @@ const RootLayoutInner = () => {
 
   return (
     <>
-    <View style={{ flex: 1, backgroundColor: currentTheme.colors.background }}>
-    <StatusBar style={currentTheme.name === "dark" ? "light" : "dark"} />
-      <Stack screenOptions={{ 
-        headerShown: false,
-        contentStyle: {
-          backgroundColor: currentTheme.colors.background,
-        },
-         }} />
-     </View>
+      <View
+        style={{ flex: 1, backgroundColor: currentTheme.colors.background }}
+      >
+        <StatusBar style={currentTheme.name === "dark" ? "light" : "dark"} />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: currentTheme.colors.background,
+            },
+          }}
+        />
+      </View>
     </>
   );
 };
@@ -60,7 +64,6 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
-      
       <LanguageProvider>
         {/* ThemeProvider should wrap the entire app */}
         <ThemeProvider>

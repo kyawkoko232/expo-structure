@@ -1,15 +1,10 @@
 import { useSession } from "@/providers/SessionProvider";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { ThemedText } from "@/components/ThemedText";
-import { Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Redirect, Tabs } from "expo-router";
 import { useTheme } from "@/context/ThemeContext";
-import { border } from "@shopify/restyle";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 
 export default function TabLayout() {
   const { session, isLoading } = useSession();
@@ -24,13 +19,10 @@ export default function TabLayout() {
     );
   }
 
-  // Only require authentication within the (app) group's layout as users
-  // need to be able to access the (auth) group and sign in again.
+  // Uncomment the following lines to enforce authentication
   // if (!session) {
-  //   return (
-  //     console.log("redirected from tag page"),
-  //     <Redirect href={"/login"} />
-  //   );
+  //   console.log("redirected from tab page");
+  //   return <Redirect href="/login" />;
   // }
 
   return (
@@ -42,20 +34,10 @@ export default function TabLayout() {
           headerShown: false,
           tabBarStyle: {
             borderTopColor: currentTheme.colors.border,
-            backgroundColor: currentTheme.colors.background, // Set background color here
-          },>
-
-      <Tabs.Screen
-      name="(order)"
-      options={{
-        title: "Order",
-        tabBarIcon: ({ color, focused }) => (
-          <TabBarIcon
-            name={focused ? "coffee" : "coffee-outline"}
-            color={color}
-          />
-        ),
-      }}
+            backgroundColor: currentTheme.colors.background,
+          },
+        }}
+      >
         <Tabs.Screen
           name="(home)"
           options={{
@@ -77,9 +59,8 @@ export default function TabLayout() {
             ),
           }}
         />
-
         <Tabs.Screen
-          name="order"
+          name="(order)"
           options={{
             title: "Order",
             tabBarIcon: ({ color, focused }) => (
@@ -90,11 +71,10 @@ export default function TabLayout() {
             ),
           }}
         />
-
         <Tabs.Screen
           name="(account)"
           options={{
-            title: "account",
+            title: "Account",
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
                 name={focused ? "account-circle" : "account-circle-outline"}
@@ -103,7 +83,6 @@ export default function TabLayout() {
             ),
           }}
         />
-
         <Tabs.Screen
           name="reward"
           options={{
