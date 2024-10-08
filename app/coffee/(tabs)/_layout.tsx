@@ -68,7 +68,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="order"
+        name="(order)"
         options={{
           title: "Order",
           tabBarIcon: ({ color, focused }) => (
