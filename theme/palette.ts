@@ -20,7 +20,7 @@ const palette = {
     danger: "#dc3545",
     warning: "#ffc107",
     info: "#17a2b8",
-    disable: "#8F8E8E",
+
     // Additional colors
     link: "#007bff", 
     border: "#d1d1d1",

@@ -23,6 +23,7 @@ import { Theme } from "@/theme/theme";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import useAuth from "@/helpers/useAuth";
+import LogoutButton from "@/components/auth/LogoutButton";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -58,6 +59,8 @@ const HomePage = () => {
     });
   };
 
+  
+
   const saveProductToRedux = (id: string, name: string) => {
     router.push({
       pathname: "/coffee/detail",
@@ -89,7 +92,7 @@ const HomePage = () => {
       <View
         style={[
           styles.navContainer,
-          { backgroundColor: currentTheme.colors.background },
+          {  borderBottomColor: currentTheme.colors.border, backgroundColor: currentTheme.colors.background },
         ]}
       >
         <Pressable onPress={onPressToTop}>
@@ -108,13 +111,22 @@ const HomePage = () => {
       {/* Body */}
       <View style={{ paddingHorizontal: 15, marginBottom: 100 }}>
         <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
-          <View style={styles.topContainer}>
+          <View style={[styles.topContainer]}>
             <View>
               <Text variant="titleB">Good Morning!</Text>
-              <Text variant="textA">Login and get free ☕️</Text>
+              {!session ? (
+                <Text variant="textA">Login and get free ☕️</Text>
+              ) : 
+              
+              <>
+              <Text variant="textA">Welcome Auth User</Text>
+              <LogoutButton />
+              </>
+              
+              }
             </View>
             <Image
-              style={styles.imagePng}
+              style={[styles.imagePng, { borderColor: color.border, borderWidth:2, borderRadius:40 }]}
               source={require("@/assets/images/PNG image.png")}
               placeholder={{ blurhash }}
               contentFit="cover"
@@ -218,15 +230,19 @@ const styles = StyleSheet.create({
   navContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems : 'center',
     marginBottom: 2,
-    alignItems: "center",
-    shadowOffset: { width: 0, height: 4 }, // Adjust height for deeper shadow
-    shadowOpacity: 0.4, // Reduce opacity for a softer shadow
-    shadowRadius: 5, // Slightly larger radius for a smoother effect
-    elevation: 3, // For Android shadow
-    padding: 15,
-    shadowColor: "accent",
+    shadowColor: "#000", // Shadow color
+    shadowOffset: { width: 0, height: 4 }, // Offset for the shadow
+    shadowOpacity: 0.4, // Shadow opacity
+    shadowRadius: 5, // Shadow blur radius
+    elevation: 1, // Elevation for Android (increased for more emphasis)
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderBottomWidth: 1, // Optional: add a bottom border for more definition
+
   },
+  
 
   image: {
     width: 30,
@@ -241,6 +257,7 @@ const styles = StyleSheet.create({
   imagePng: {
     width: 80,
     height: 80,
+
   },
   top2Container: {
     marginTop: 20,

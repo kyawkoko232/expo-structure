@@ -18,7 +18,7 @@ import { useSession } from "@/providers/SessionProvider";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Image } from "expo-image";
-import { StatusBar } from "expo-status-bar";
+
 import { useRouter } from "expo-router";
 import { useTheme } from "@/context/ThemeContext";
 import { createText } from "@shopify/restyle";
@@ -59,7 +59,7 @@ export default function Account() {
         paddingHorizontal: 20,
       }}
     >
-      <StatusBar style="dark" />
+
       <View style={styles.topContainer}>
         <View>
           <Text variant="titleA">Account</Text>
@@ -73,6 +73,9 @@ export default function Account() {
           transition={1000}
         />
       </View>
+
+     <View style={{flex:1}}>
+  
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ paddingHorizontal: 25, marginTop: 15 }}
@@ -127,12 +130,21 @@ export default function Account() {
               </Pressable>
             </View>
 
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Text variant="textA">Face ID</Text>
+            <Switch
+              trackColor={{
+                false: currentTheme.colors.disable,
+                true: currentTheme.colors.success,
               }}
+
             >
               <Text variant="textA">Account ID</Text>
               <Pressable>

@@ -8,11 +8,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Redirect, Tabs } from "expo-router";
 import { useTheme } from "@/context/ThemeContext";
 import { border } from "@shopify/restyle";
+import React from "react";
+import { StatusBar } from "expo-status-bar";
 
 export default function TabLayout() {
   const { session, isLoading } = useSession();
   const colorScheme = useColorScheme();
-  const {currentTheme} = useTheme();
+  const { currentTheme } = useTheme();
 
   if (isLoading) {
     return (
@@ -30,81 +32,91 @@ export default function TabLayout() {
   //     <Redirect href={"/login"} />
   //   );
   // }
+
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: currentTheme.colors.primary,
-        tabBarInactiveTintColor: "gray",
-        headerShown: false,
-  
-        tabBarStyle: { 
-          borderTopColor: currentTheme.colors.border, 
-          backgroundColor: currentTheme.colors.background // Set background color here
-        
-        }
-        
+    <>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: currentTheme.colors.primary,
+          tabBarInactiveTintColor: "gray",
+          headerShown: false,
+          tabBarStyle: {
+            borderTopColor: currentTheme.colors.border,
+            backgroundColor: currentTheme.colors.background, // Set background color here
+          },>
+
+      <Tabs.Screen
+      name="(order)"
+      options={{
+        title: "Order",
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon
+            name={focused ? "coffee" : "coffee-outline"}
+            color={color}
+          />
+        ),
       }}
-    >
-      <Tabs.Screen
-        name="(home)"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="pay"
-        options={{
-          title: "Scan/Pay",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name={"qrcode-scan"} color={color} size={20} />
-          ),
-        }}
-      />
+        <Tabs.Screen
+          name="(home)"
+          options={{
+            title: "Home",
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon
+                name={focused ? "home" : "home-outline"}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="pay"
+          options={{
+            title: "Scan/Pay",
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name={"qrcode-scan"} color={color} size={20} />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name="(order)"
-        options={{
-          title: "Order",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "coffee" : "coffee-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
+        <Tabs.Screen
+          name="order"
+          options={{
+            title: "Order",
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon
+                name={focused ? "coffee" : "coffee-outline"}
+                color={color}
+              />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name="(account)"
-        options={{
-          title: "account",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "account-circle" : "account-circle-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
+        <Tabs.Screen
+          name="(account)"
+          options={{
+            title: "account",
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon
+                name={focused ? "account-circle" : "account-circle-outline"}
+                color={color}
+              />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name="reward"
-        options={{
-          title: "Rewards",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "star" : "star-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
-    </Tabs>
+        <Tabs.Screen
+          name="reward"
+          options={{
+            title: "Rewards",
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon
+                name={focused ? "star" : "star-outline"}
+                color={color}
+              />
+            ),
+          }}
+        />
+      </Tabs>
+    </>
   );
 }

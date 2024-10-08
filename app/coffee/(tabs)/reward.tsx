@@ -36,7 +36,7 @@ const SettingsScreen = () => {
               onPress={() => changeTheme(themeKey)}
             >
               <Text
-                style={[styles.buttonText, { color: currentTheme.colors.text }]}
+                style={[styles.buttonText, { color: currentTheme.colors.textOpposite }]}
               >
                 Switch to {themeKey}
               </Text>
