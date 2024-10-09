@@ -1,8 +1,4 @@
-import {
-  View,
-  Pressable,
-  StyleSheet,
-} from "react-native";
+import { View, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { API_URL } from "@/config";
@@ -46,7 +42,13 @@ export default function Product({
 
   return (
     <View style={styles.wrapper}>
-      <Pressable style={[styles.container,{backgroundColor: currentTheme.colors.background}]} onPress={onCall}>
+      <Pressable
+        style={[
+          styles.container,
+          { backgroundColor: currentTheme.colors.textOpposite },
+        ]}
+        onPress={onCall}
+      >
         <Image
           source={{ uri: API_URL + image }} // Adjust image source
           style={styles.image}
@@ -57,23 +59,24 @@ export default function Product({
           <Ionicons
             name={favourite ? "heart" : "heart-outline"}
             size={18}
-            color={color.primary} // Use dynamic color from the theme
+            color={color.danger} // Use dynamic color from the theme
           />
         </Pressable>
-        <Text style={styles.name}>{name}</Text>
-        <View style={styles.ratingContainer}>
-          <Ionicons name="star" size={12} color="orange" />
-          <Text style={styles.star}>{star}</Text>
+        <Text style={[styles.name, { color: color.text }]}>{name}</Text>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={styles.priceContainer}>
+            <Text style={styles.price}>${price.toFixed(2)}</Text>
+            {discount > 0 && (
+              <Text style={styles.discount}>${discount.toFixed(2)}</Text>
+            )}
+          </View>
+          <View style={styles.ratingContainer}>
+            <Ionicons name="star" size={12} color="orange" />
+            <Text style={styles.star}>{star}</Text>
+          </View>
         </View>
-        <Text style={styles.description}>
-          {description.length > 25 ? description.substring(0, 25) + "..." : description}
-        </Text>
-        <View style={styles.priceContainer}>
-          <Text style={styles.price}>${price.toFixed(2)}</Text>
-          {discount > 0 && (
-            <Text style={styles.discount}>${discount.toFixed(2)}</Text>
-          )}
-        </View>
+
       </Pressable>
     </View>
   );
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 50,
+    height: 100,
     borderRadius: 12,
     marginBottom: 20,
     resizeMode: "cover",
@@ -112,10 +115,8 @@ const styles = StyleSheet.create({
     right: 10,
   },
   name: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#333", // Darker text color for contrast
-    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "500",
     marginBottom: 5,
   },
   ratingContainer: {
@@ -143,13 +144,13 @@ const styles = StyleSheet.create({
   },
   price: {
     color: "#007618",
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: "500",
     marginRight: 5,
   },
   discount: {
     color: "#888",
     textDecorationLine: "line-through",
-    fontSize: 13,
+    fontSize: 12,
   },
 });
