@@ -24,6 +24,7 @@ import { useScrollToTop } from "@react-navigation/native";
 import {
   fetchProducts,
   selectAllProducts,
+  updateFavouriteApi,
 } from "@/providers/redux/slices/productSlice";
 import { fetchRequiredInfo } from "@/providers/redux/slices/requiredInfoSlice";
 import Product from "@/components/Cafe/Product";
@@ -123,11 +124,11 @@ const HomePage = () => {
     });
   };
 
-  const addToFavourite = async (item: CategoryType) => {
+  const addToFavourite = async (item: ProductType) => {
     try {
       const data = { id: item.id, data: { favourite: !item.favourite } };
       // const data = { id: "uuid1", data: { favourite: !item.favourite } };
-      // await dispatch(updateFavouriteApi(data)).unwrap();
+      await dispatch(updateFavouriteApi(data)).unwrap();
     } catch (error: any) {
       console.log("Error-----", error);
       // Toast.show(error, {
@@ -261,7 +262,7 @@ const HomePage = () => {
             ) : null}
           </View>
 
-          <Title title="Drinks" action="See All" onPressAction={onPressToTop} />
+          {/* <Title title="Drinks" action="See All" onPressAction={onPressToTop} />
           <FlashList
             data={categories}
             horizontal
@@ -270,7 +271,7 @@ const HomePage = () => {
             )}
             estimatedItemSize={80}
             showsHorizontalScrollIndicator={false}
-          />
+          /> */}
 
           <View>
             <Title
@@ -333,8 +334,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   imagePng: {
-    width: 80,
+    width:80,
     height: 80,
+    
   },
   top2Container: {
     marginTop: 20,
