@@ -17,8 +17,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import RadioGroup from "react-native-radio-buttons-group";
 import { coffeeCategories, radio, sizes, sugar } from "@/data";
 import DropDownPicker from "react-native-dropdown-picker";
-import { useAppDispatch } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateCart } from "@/providers/redux/slices/cartSlice";
+import { selectProductById } from "@/providers/redux/slices/productSlice";
+import { API_URL } from "@/config";
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -34,8 +36,12 @@ const DetailScreen = () => {
 
   const params = useLocalSearchParams();
   const { id, name, image } = params;
+  const product = useAppSelector((state) =>
+    selectProductById(state, id as string)
+  );
 
-  console.log("Image passed to DetailScreen:", image);
+  console.log(product.image)
+  console.log("Image passed to DetailScreen:", product.image);
 
   const [selectedId, setSelectedId] = useState<string | undefined>();
   const radioButtons = useMemo(() => radio, []);
@@ -68,14 +74,20 @@ const DetailScreen = () => {
         sugar: sugarPercent,
       })
     );
-    router.push("/coffee/order"); // Navigate to order page after adding to cart
+    router.push("/coffee/(order)"); // Navigate to order page after adding to cart
   };
 
   const renderContent = () => (
     <>
       <Text variant="title" color="text">
-        Cappuccino
+        {product.name}
       </Text>
+      <Image
+          source={{ uri: API_URL+ product.image  }} // Product image or passed image
+          style={styles.image}
+          contentFit="contain"
+          placeholder={blurhash}
+        />
       <View style={{ flexDirection: "row" }}>
         <View style={styles.spinnerContainer}>
           <Pressable onPress={decrementQuantity} style={styles.spinner}>
@@ -91,11 +103,10 @@ const DetailScreen = () => {
 
       <View style={styles.containerTwo}>
         <Text variant="title" color="text">
-          Description
+          {product.star}
         </Text>
         <Text variant="textA" color="text" marginTop="sm">
-          A cappuccino is a beloved espresso-based hot coffee drink made with
-          layering of espresso, steamed milk, and milk foam on top.
+          {product.description}
         </Text>
       </View>
 
@@ -138,7 +149,7 @@ const DetailScreen = () => {
             setOpen={setSugarOpen}
             setValue={setSugarPercent}
             setItems={setSugarItems}
-            placeholder={"Sugar"}
+            placeholder={"Select Sugar"}
             placeholderStyle={styles.placeholderStyle}
             textStyle={styles.textStyle}
             style={styles.dropDownStyle}
@@ -168,14 +179,7 @@ const DetailScreen = () => {
         }}
       />
 
-      <View style={styles.ImageContainer}>
-        <Image
-          source={image} // Use the image passed via params
-          style={styles.image}
-          contentFit="contain"
-          placeholder={blurhash}
-        />
-      </View>
+   
 
       <FlatList
         data={[{}]} // Just pass a single item to render your content
@@ -210,14 +214,14 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     marginTop: -45,
   },
+  
+
   image: {
-    width: 250,
-    height: 200,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 6,
-    shadowOpacity: 3,
-    elevation: 5,
-    shadowColor: "#4B2C20",
+    width: "100%",
+    height: 150,
+    borderRadius: 12,
+    margin: 20,
+    resizeMode: "cover",
   },
 
   containerTwo: {

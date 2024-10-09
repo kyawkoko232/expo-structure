@@ -35,15 +35,22 @@ const CoffeeOrderCard = () => {
     },
   };
 
-  const navigateToCart= () => {
-    router.push("/settings/theme"); 
+  const navigateToCart = () => {
+    router.push("/settings/theme");
   };
 
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: color.background }]}
     >
-      <ScrollView contentContainerStyle={[styles.content, { backgroundColor: color.textOpposite}]}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.content,
+          { backgroundColor: color.textOpposite },
+        ]}
+        showsVerticalScrollIndicator={false}  
+        showsHorizontalScrollIndicator={false} 
+      >
         {/* Thank You Message */}
         <Text style={[styles.thankYouText, { color: color.text }]}>
           Thank you!
@@ -55,22 +62,24 @@ const CoffeeOrderCard = () => {
             Transaction Details
           </Text>
 
-          <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <Text style={[styles.text, { color: color.text }]}>
-              Transaction ID 
+              Transaction ID
             </Text>
             <Text style={{ color: color.text }}>{order.transactionId}</Text>
           </View>
-          <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-            <Text style={[styles.text, { color: color.text }]}>
-              Date
-            </Text>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={[styles.text, { color: color.text }]}>Date</Text>
             <Text style={{ color: color.text }}>{order.date}</Text>
           </View>
-          <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-            <Text style={[styles.text, { color: color.text }]}>
-              Time
-            </Text>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={[styles.text, { color: color.text }]}>Time</Text>
             <Text style={{ color: color.text }}>{order.time}</Text>
           </View>
         </View>
@@ -117,22 +126,35 @@ const CoffeeOrderCard = () => {
               {order.paymentSummary.total}
             </Text>
           </View>
-          <View style={styles.summaryRow}>
+          <View style={styles.section}>
+            {/* Payment Method */}
             <Text style={[styles.text, { color: color.text }]}>
               Payment Method
             </Text>
-            <Text style={[styles.text, { color: color.text }]}>
+            <Text
+              style={[
+                styles.text,
+                { color: color.text, fontSize: 14, flexWrap: "wrap", marginBottom: 10 }
+              ]}
+              numberOfLines={2}
+            >
               {order.paymentSummary.paymentMethod}
             </Text>
-          </View>
-          <View style={styles.summaryRow}>
+
+            {/* Schedule Pick-Up */}
             <Text style={[styles.text, { color: color.text }]}>
               Schedule Pick-Up
             </Text>
-            <Text style={[styles.text, { color: color.text }]}>
+            <Text
+              style={[
+                styles.text,
+                { color: color.text, fontSize: 14, flexWrap: "wrap" }
+              ]}
+            >
               {order.paymentSummary.schedulePickup}
             </Text>
           </View>
+
         </View>
 
         {/* Track Order Button */}
@@ -194,7 +216,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 15,
     borderRadius: 10,
-    marginTop: 20,
   },
   trackOrderText: {
     color: "white",

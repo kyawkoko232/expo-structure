@@ -3,13 +3,14 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import CounterReducer from "./slices/counterSlice";
 import postReducer from "./slices/postSlice";
 import { ApiService } from './services/ApiService';
-import coffeeReducer from "./slices/coffeeSlice";
-
+import productReducer from "./slices/productSlice";
+import requiredInfoReducer from "./slices/requiredInfoSlice";
 export const store = configureStore({
   reducer: {
     counter: CounterReducer,
     post: postReducer,
-    coffee: coffeeReducer,
+    products: productReducer,
+    requiredInfo: requiredInfoReducer,
     [ApiService.reducerPath]: ApiService.reducer, 
   },
   middleware: (getDefaultMiddleware) =>

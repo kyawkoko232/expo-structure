@@ -14,8 +14,8 @@ const LogoutButton = () => {
       <TouchableOpacity
             style={{
               backgroundColor: currentTheme.colors.primary,
-              paddingVertical: 12,
-              paddingHorizontal: 20,
+              paddingVertical: 5,
+              paddingHorizontal: 5,
               borderRadius: 8,
               marginVertical: 10,
               width: "80%",

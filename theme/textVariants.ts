@@ -48,8 +48,6 @@ export const textVariants = {
     color: "text",
     fontFamily: "poppins",
     fontWeight: "400",
-    marginTop: "md",
-
     lineHeight: 22, // Keep as defined
     opacity: 0.7,
   },

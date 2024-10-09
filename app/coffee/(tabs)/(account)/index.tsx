@@ -76,7 +76,7 @@ export default function Account() {
             {/* profile */}
             <View>
               <Text variant="titleB">Profile</Text>
-              <View style={{ marginVertical: 10, gap: 3 }}>
+              <View style={{ marginVertical: 5, gap: 3 }}>
                 <Pressable
                   style={styles.container}
                   onPress={() => {
@@ -87,7 +87,7 @@ export default function Account() {
                   <Ionicons
                     name="information-circle-outline"
                     size={24}
-                    color="black"
+                    color={currentTheme.colors.text}
                   />
                 </Pressable>
 
@@ -98,7 +98,7 @@ export default function Account() {
                   }}
                 >
                   <Text variant="textA">Cards & Payments</Text>
-                  <Ionicons name="card-outline" size={24} color="black" />
+                  <Ionicons name="card-outline" size={24} color={currentTheme.colors.text} />
                 </Pressable>
 
                 <Pressable
@@ -108,7 +108,7 @@ export default function Account() {
                   }}
                 >
                   <Text variant="textA">Transaction History</Text>
-                  <Ionicons name="options-outline" size={24} color="black" />
+                  <Ionicons name="options-outline" size={24} color={currentTheme.colors.text} />
                 </Pressable>
 
                 <Pressable
@@ -118,28 +118,25 @@ export default function Account() {
                   }}
                 >
                   <Text variant="textA">Privacy & Data</Text>
-                  <Ionicons name="hand-left-outline" size={24} color="black" />
+                  <Ionicons name="hand-left-outline" size={24} color={currentTheme.colors.text} />
                 </Pressable>
               </View>
 
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+              <Pressable
+                style={styles.container}
+                onPress={() => {
+                  // router.push("/(auth)/login");
                 }}
               >
                 <Text variant="textA">Face ID</Text>
-                <Pressable>
-                  <Ionicons name="id-card-outline" size={24} color="black" />
-                </Pressable>
-              </View>
+                <Ionicons name="id-card-outline" size={24} color={currentTheme.colors.text} />
+              </Pressable>
             </View>
 
             {/* Security */}
             <View>
               <Text variant="titleB">Security</Text>
-              <View style={{ marginVertical: 10, gap: 3 }}>
+              <View style={{ marginVertical: 5, gap: 3 }}>
                 <View
                   style={{
                     flexDirection: "row",
@@ -273,6 +270,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginVertical: 8,
   },
   centeredView: {
     flex: 1,

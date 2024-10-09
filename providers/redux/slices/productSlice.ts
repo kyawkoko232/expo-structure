@@ -6,31 +6,26 @@ import {
 import { fetchApi } from "@/api";
 import { ProductType } from "@/types";
 
-//1-api ka ya dae data ko pyn py dr store htl ma youk ty bu
-
-//(_,ka index.tsx yel useEffect mr dispatch(fetchProducts()<- a lod ma lo)
 export const fetchProducts = createAsyncThunk("products/fetchAll", async (_, { rejectWithValue }) => {
   const response = await fetchApi("products");
-  if (!response) { 
-    return rejectWithValue("Network connection failed. Please try again!");
-  }
-  return response;
-});
-
-export const updateFavouriteApi = createAsyncThunk("products/updateOne", async ({id, data}:{id: string, data: any},  { rejectWithValue }) => {
-  const response = await fetchApi(`products/${id}`,"PATCH", "_", data ); 
-  // PUT
   if (!response) {
     return rejectWithValue("Network connection failed. Please try again!");
   }
   return response;
 });
 
-// redux htl mr yoe yoe ma thein pl normalize lote p thein 
+export const updateFavouriteApi = createAsyncThunk("products/updateOne", async ({id, data}:{id: string, data: any},  { rejectWithValue }) => {
+  const response = await fetchApi(`products/${id}`,"PATCH", "_", data ); // PUT
+  if (!response) {
+    return rejectWithValue("Network connection failed. Please try again!");
+  }
+  return response;
+});
+
 export const productsAdapter = createEntityAdapter<ProductType>();
 
 const initialState = productsAdapter.getInitialState({ loading: false, error: false });
-//2- store htl htae pho 
+
 export const productSlice = createSlice({
   name: "products",
   initialState,
@@ -43,7 +38,6 @@ export const productSlice = createSlice({
       state.loading = true;
       state.error = false;
     });
-
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       productsAdapter.upsertMany(state, action.payload);
       state.error = false;
