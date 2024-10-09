@@ -6,6 +6,7 @@ import { RootState } from "@/providers/redux/store";
 import { useGetPostQuery } from "@/providers/redux/services/endpoints/blog.endpoints";
 import { clearSelectedPost } from "@/providers/redux/slices/postSlice";
 import { MaterialIcons } from "@expo/vector-icons"; // Importing Material Icons
+import { MotiView } from "moti";
 
 const SinglePostPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,14 @@ const SinglePostPage: React.FC = () => {
       ) : error ? (
         <Text style={styles.errorText}>Error loading post</Text>
       ) : post ? (
-        <View>
+        <MotiView
+          from={{ opacity: 0 }} // Start off the screen to the right
+          animate={{ opacity: 1 }} // Move to the center
+          transition={{
+            type: "timing",
+            duration: 200,
+          }}
+        >
           <Text style={styles.title}>{post.title}</Text>
           <Text style={styles.body}>{post.body}</Text>
           <Text style={styles.tags}>Tags: {post.tags?.join(", ")}</Text>
@@ -47,14 +55,16 @@ const SinglePostPage: React.FC = () => {
             </View>
             <View style={styles.reaction}>
               <MaterialIcons name="thumb-down" size={20} color="#dc3545" />
-              <Text style={styles.reactionText}>{post.reactions?.dislikes}</Text>
+              <Text style={styles.reactionText}>
+                {post.reactions?.dislikes}
+              </Text>
             </View>
             <View style={styles.reaction}>
               <MaterialIcons name="visibility" size={20} color="#6c757d" />
               <Text style={styles.reactionText}>{post.views}</Text>
             </View>
           </View>
-        </View>
+        </MotiView>
       ) : (
         <Text style={styles.errorText}>Post not found</Text> // Handle case where post is null or undefined
       )}

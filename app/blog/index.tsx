@@ -1,4 +1,5 @@
 import React from "react";
+import { MotiView } from 'moti';
 import {
   Text,
   View,
@@ -30,7 +31,15 @@ const Blog: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.header}>
+    <MotiView
+     from={{ opacity: 0, scale: 1.8 }} // Initial state
+     animate={{ opacity: 1, scale: 1 }} // Final state
+     transition={{
+       type: 'timing',
+       duration: 300,
+     }}
+    >
+    <View style={styles.header}>
         {!session ? (
           <>
             <Text style={styles.loginMessage}>You are not logged in</Text>
@@ -75,6 +84,7 @@ const Blog: React.FC = () => {
         )}
         contentContainerStyle={styles.listContainer}
       />
+    </MotiView>
     </SafeAreaView>
   );
 };
