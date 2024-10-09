@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/context/LanguageContext"; // Language context
 import ReactNativeElementDropdownComponent from "@/components/dropdown/ReactNativeElementDropdown";
 import useAuth from "@/helpers/useAuth";
+import { textVariants } from "../constants/Fonts";
 
 const index = () => {
   const { session, handleSignOut } = useAuth(); // Use the hook to get session and signOut
@@ -20,7 +21,9 @@ const index = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>{t("home.welcome")}</Text>
+      <Text style={[styles.title, textVariants.poppins]}>
+        {t("home.welcome")}
+      </Text>
 
       <ReactNativeElementDropdownComponent
         data={availableLanguages} // Array of { label: string, value: string }
@@ -39,7 +42,7 @@ const index = () => {
             style={styles.button}
             onPress={() => router.push("/(auth)/login")}
           >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={[textVariants.poppins, styles.buttonText]}>Login</Text>
           </TouchableOpacity>
         </>
       ) : (
@@ -48,7 +51,9 @@ const index = () => {
             style={styles.button}
             onPress={() => router.push("/settings/")}
           >
-            <Text style={styles.buttonText}>{t('settings')}</Text>
+            <Text style={[textVariants.poppins, styles.buttonText]}>
+              {t("settings")}
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -56,7 +61,9 @@ const index = () => {
             onPress={handleSignOut} // Sign out button handler
             accessibilityLabel="Sign Out"
           >
-            <Text style={styles.buttonText}>{t('auth.signOut')}</Text>
+            <Text style={[textVariants.poppins, styles.buttonText]}>
+              {t("auth.signOut")}
+            </Text>
           </TouchableOpacity>
         </>
       )}
@@ -65,21 +72,27 @@ const index = () => {
         style={styles.button}
         onPress={() => router.push("/(protected)/home")}
       >
-        <Text style={styles.buttonText}>{t('home.home')}</Text>
+        <Text style={[textVariants.poppins, styles.buttonText]}>
+          {t("home.home")}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => router.push("/blog/")}
       >
-        <Text style={styles.buttonText}>{t('blog')}</Text>
+        <Text style={[textVariants.poppins, styles.buttonText]}>
+          {t("blog")}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => router.push("/routes")}
       >
-        <Text style={styles.buttonText}>{t('allRoutes')}</Text>
+        <Text style={[textVariants.poppins, styles.buttonText]}>
+          {t("allRoutes")}
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -97,7 +110,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
     color: "#333",
     marginBottom: 20,
   },
@@ -121,6 +133,5 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 18,
-    fontWeight: "bold",
   },
 });
